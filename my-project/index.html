@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="src/style.css">
+    <title>Brand Riders</title>
+  </head>
+  <body>
+    <header class="gradient-red h-[100px] flex items-center rounded-bl-[50px] rounded-br-[50px] fixed w-full">
+      <img src="img/Logo.png" alt="Logo" class="h-[34px] w-[238px] ml-[250px]"/>
+
+      <nav class="ml-auto flex items-center gap-6 mr-[225px]">
+        <a href="#" class="header-link">JAZDITE S NAMI</a>
+        <a href="#" class="header-link">INZERUJTE S NAMI</a>
+        <a href="#" class="header-link header-link--pill">PORTÁL VODIČA</a>
+        <button class="header-link--icon" aria-label="Otevřít menu">
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+        </button>
+      </nav>
+    </header>
+
+    <section class="hero-bg h-[911px] flex items-center">
+      <div class="hero-carousel w-full px-0">
+        <div class="hero-slides">
+          <div class="hero-slides-track">
+          <div class="hero-slide active">
+            <div class="slide-inner container mx-auto w-full max-w-[1450px] px-6 flex items-center justify-between">
+              <div class="hero-left w-1/2 text-white pr-10">
+              <h1 class="hero-title  font-black leading-tight"> 
+                  <span class="hero-line"><img src="img/icons/carsideRed.png" alt="" class="hero-icon hero-icon-sidecar" aria-hidden="true"/>JAZDI</span>
+                  <span class="hero-line">ŠETRI <img src="img/icons/pigRed.png" alt="" class="hero-icon hero-icon-pig" aria-hidden="true"/></span>
+                  <span class="hero-line"><img src="img/icons/moneyRed.png" alt="" class="hero-icon hero-icon-money" aria-hidden="true"/>ZARÁBAJ</span>
+              </h1>
+              
+              <button class="cta hero-link--pill mt-8 px-6">ZISTIŤ VIAC</button>
+            </div>
+
+            <div class="hero-right w-1/2 relative flex items-end justify-end">
+              <img src="img/slides/slide1.png" alt="Car" class="hero-car max-w-[690px] h-[318px] ml-auto relative z-20" />
+              </div>
+              <!-- Floating badge (movable) - edit inline style to reposition -->
+              <div class="hero-badge" style="right: 720px; top: -45px;">
+                <div class="hero-badge__text">REGISTRÁCIA<br>ZADARMO A<br>NEZÁVÄZNE</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2:  -->
+          <div class="hero-slide">
+            <div class="slide-inner container mx-auto w-full max-w-[1450px] px-6 flex items-center justify-between">
+              <div class="hero-left w-1/2 text-white pr-10">
+              <h1 class="hero-title  font-black leading-tight"> 
+                  <span class="hero-line"><img src="img/icons/carsideRed.png" alt="" class="hero-icon hero-icon-sidecar" aria-hidden="true"/>JAZDI</span>
+                  <span class="hero-line">ŠETRI <img src="img/icons/pigRed.png" alt="" class="hero-icon hero-icon-pig" aria-hidden="true"/></span>
+                  <span class="hero-line"><img src="img/icons/moneyRed.png" alt="" class="hero-icon hero-icon-money" aria-hidden="true"/>ZARÁBAJ</span>
+              </h1>
+              
+              <button class="cta hero-link--pill mt-8 px-6">ZISTIŤ VIAC</button>
+            </div>
+
+            <div class="hero-right w-1/2 relative flex items-end justify-end">
+              <img src="img/slides/slide1.png" alt="Car" class="hero-car max-w-[690px] h-[318px] ml-auto relative z-20" />
+              </div>
+              <!-- Floating badge on slide 2 -->
+            
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    
+
+
+      <!-- controls grouped inside the carousel container so arrows and dots are positioned together -->
+      <div class="hero-controls">
+        <button class="hero-arrow hero-arrow--left" aria-label="Previous slide"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="hero-arrow hero-arrow--right" aria-label="Next slide"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+
+        <!-- pagination dots centered above bottom -->
+        <ul class="hero-dots" role="tablist">
+          <li class="dot active" role="tab" aria-selected="true"></li>
+          <li class="dot" role="tab"></li>
+          <li class="dot" role="tab"></li>
+          <li class="dot" role="tab"></li>
+          <li class="dot" role="tab"></li>
+        </ul>
+      </div>
+    </section>
+   
+    <script type="module" src="src/carousel.js"></script>
+
+
+
+
+
+    
+  </body>
+</html>
