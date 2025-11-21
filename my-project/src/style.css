@@ -1,20 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Cresta:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Apply Cresta as the default font for the whole site */
 html, body {
-    font-family: 'Cresta', sans-serif;
-    background-color: #F2F2F2;
+	font-family: 'Cresta', sans-serif;
+	background-color: #F2F2F2;
+	overflow-x: hidden;
 }
-
-
 
 .gradient-red {
 	@apply bg-gradient-to-r from-[#C40228] to-[#ED3D1A] z-50;
 }
 
-
-/* Header link base style used for the header items */
 .header-link {
 	@apply text-white uppercase font-black italic text-[20px] tracking-wide inline-flex items-center gap-2 px-4 py-2 transition duration-200 ease-in-out;
 }
@@ -23,24 +19,19 @@ html, body {
 	@apply opacity-90;
 }
 
-
 .header-link--pill {
 	@apply bg-[#0FC26C] h-[38px] text-white rounded-full transition duration-200 ease-in-out;
 }
 
-
 .hero-link--pill {
-    @apply bg-[#0FC26C] text-white font-black italic rounded-full inline-flex items-center justify-center cursor-pointer h-[38px] w-[218px] mt-20 text-[18px] transition duration-200 ease-in-out;
+	@apply bg-[#0FC26C] text-white font-black italic rounded-full inline-flex items-center justify-center cursor-pointer h-[38px] w-[218px] mt-20 text-[18px] transition duration-200 ease-in-out;
 }
 .hero-link--pill:hover { @apply opacity-95; }
-
-
 
 .header-link--icon {
 	@apply px-4 py-3 rounded-md text-white hover:bg-white/20 hover:shadow-md cursor-pointer transition duration-200 ease-in-out flex flex-col items-center  justify-center z-50;
 	background: transparent;
 }
-
 
 .header-link--icon .hamburger-bar {
 	@apply block w-9 h-[3px] bg-white rounded transition-colors duration-200 ease-in-out;
@@ -48,7 +39,6 @@ html, body {
 .header-link--icon .hamburger-bar + .hamburger-bar {
 	@apply mt-[5px];
 }
-
 
 .bg-green {
 	background-color: #0FC26C;
@@ -61,17 +51,18 @@ html, body {
 .hero-bg::before {
 	content: '';
 	position: absolute;
+	margin-top: 50px;
 	left: 0;
 	right: 0;
-	top: -100px; /* extend under the header (header height is 100px) */
+	top: -100px;
 	bottom: 0;
 	background-image: url('/img/heroBg.png');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	filter: brightness(35%);
+	filter: brightness(45%);
 	z-index: 0;
-  border-bottom-left-radius: 50px;
+	border-bottom-left-radius: 50px;
 	border-bottom-right-radius: 50px;
 }
 .hero-bg > * {
@@ -79,14 +70,13 @@ html, body {
 	z-index: 10;
 }
 
-/* Hero carousel layout */
 .hero-carousel {
 	@apply relative;
 }
 
-/* Slides are placed in a horizontal track; we'll translate the track to slide between items */
 .hero-slides {
 	position: relative;
+	transform: translateY(-55px);
 }
 .hero-slides-track {
 	display: flex;
@@ -100,31 +90,57 @@ html, body {
 	justify-content: space-between;
 }
 
-
 .hero-left .hero-title {
-	@apply text-[82px] font-black italic leading-[0.95] space-y-2;
+	@apply text-[96px] font-black italic leading-[0.95] space-y-2 uppercase;
 }
 
+.hero-slide--3 .hero-left .hero-title {
+  @apply text-[76px] ;
+}
+
+.hero-slide--3 .hero-left {
+	width: 1175px !important;
+	max-width: 1175px !important;
+}
 
 .hero-line {
-	@apply inline-flex items-center gap-4 leading-[0.95] mr-8; 
+	@apply inline-flex items-center gap-4 leading-[0.95];
+	/* enforce inline-flex centering */
+	display: inline-flex;
+	align-items: center !important;
+	gap: 1rem;
+	line-height: 0.95;
 }
 
 .hero-icon {
-	@apply h-auto; 
+	@apply h-auto mx-2;
+	/* ensure icon centers inside the flex-line */
+	display: block;
+	align-self: center !important;
+	vertical-align: middle;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
-/* Specific icon variants for fine-tuning size/alignment */
-.hero-icon-sidecar { @apply w-[128px] h-[60px]; } 
-.hero-icon-pig { @apply w-[85px] h-[80px] ml-6; } 
-.hero-icon-money { @apply w-[91px] h-[66px]; } 
+.hero-icon-sidecar { @apply w-[128px] h-[60px];} 
+.hero-icon-sidecar-second { @apply w-[116px] h-[54px] ml-3;} 
+
+.hero-icon-pig { @apply w-[85px] h-[80px] ml-6;} 
+
+.hero-icon-money { @apply w-[91px] h-[66px];} 
+.hero-icon-money-second { @apply w-[82px] h-[60px] ml-6;} 
+
+.hero-icon-carfront { @apply w-[59px] h-[52px];}
+
+.hero-icon-persowave { @apply w-[51px] h-[61px] ;}
 
 .hero-icon-sidecar, .hero-icon-pig, .hero-icon-money { vertical-align: middle; }
 
-/* Fade-in + bob animations for hero icons */
+.hero-icon-carfront, .hero-icon-persowave { vertical-align: middle; }
+
 .hero-icon-fade {
-    opacity: 0;
-    animation: hero-fade-in 800ms ease forwards, hero-bob 3000ms ease-in-out var(--bob-delay, 0ms) infinite;
+	opacity: 0;
+	animation: hero-fade-in 800ms ease forwards, hero-bob 3000ms ease-in-out var(--bob-delay, 0ms) infinite;
 }
 
 @keyframes hero-fade-in {
@@ -138,15 +154,13 @@ html, body {
 	100% { transform: translateY(0); }
 }
 
-/* When JS parallax is applied we overwrite transform, so ensure transform-origin and smooth transitions */
 .hero-icon { transform-origin: center center; transition: transform 200ms linear; }
 
-/* Fade-up animation for hero text (title lines, subtitle, CTA) */
 .hero-animate {
-    opacity: 0;
-    transform: translateY(24px);
-    animation: hero-fade-up 900ms cubic-bezier(.2,.9,.3,1) forwards;
-    animation-delay: var(--delay, 0ms);
+	opacity: 0;
+	transform: translateY(24px);
+	animation: hero-fade-up 900ms cubic-bezier(.2,.9,.3,1) forwards;
+	animation-delay: var(--delay, 0ms);
 }
 
 @keyframes hero-fade-up {
@@ -154,7 +168,6 @@ html, body {
 	to { opacity: 1; transform: translateY(0); }
 }
 
-/* Floating badge (oval) used in hero. Size: 227x209. */
 .hero-badge {
 	position: absolute;
 	@apply w-[209px] h-[209px] rounded-full bg-[#0FC26C] flex items-center justify-center z-40;
@@ -163,15 +176,11 @@ html, body {
 }
 
 .hero-badge__text {
-	@apply inline-block text-white italic font-black text-[22px] leading-tight text-center px-4;
+	@apply inline-block text-white italic font-black text-[22px] leading-tight text-center px-4 uppercase;
 	line-height: 1.05;
 	transform: rotate(10deg);
 	transform-origin: center center;
 }
-
-
-
-
 
 .hero-sub {
 	@apply opacity-95;
@@ -186,16 +195,21 @@ html, body {
 	@apply block relative right-0 bottom-0 mt-[170px];
 }
 
+.hero-motorcyclists {
+	@apply block relative right-45 top-43 mt-[170px];
+}
+
+
 
 .hero-arrow {
-    @apply absolute w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[26px] z-60 cursor-pointer bg-transparent top-1/2 -translate-y-1/2;
+	@apply absolute w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[26px] z-60 cursor-pointer bg-transparent top-1/2 -translate-y-1/2;
 
 }
 .hero-arrow--left { @apply left-[80px]; }
 .hero-arrow--right { @apply right-[80px]; }
 
 .hero-dots {
-    @apply static flex gap-6 z-60 list-none p-0 m-0 ;
+	@apply static flex gap-6 z-60 list-none p-0 m-0 ;
 }
 .hero-dots .dot {
 	@apply w-[20px] h-[20px] rounded-full transition-all duration-200 ease-in-out bg-white;
@@ -205,7 +219,7 @@ html, body {
 }
 
 .hero-controls {
-    @apply absolute inset-x-0 bottom-[100px] w-full pointer-events-none flex items-center justify-center h-[26px];
+	@apply absolute inset-x-0 bottom-[40px] w-full pointer-events-none flex items-center justify-center h-[26px];
 }
 .hero-controls .hero-arrow,
 .hero-controls .hero-dots { @apply pointer-events-auto; }
@@ -213,15 +227,20 @@ html, body {
 
 @media (max-width: 900px) {
 	.hero-carousel { 
-    @apply flex-col gap-8 items-start; 
+	@apply flex-col gap-8 items-start; 
   }
 
+	/* Slightly reduce the upward offset on smaller screens */
+	.hero-slides {
+		transform: translateY(-30px);
+	}
+
 	.hero-left, .hero-right { 
-    @apply w-full; 
+	@apply w-full; 
   }
 
 	.hero-left { 
-    @apply pr-0; 
+	@apply pr-0; 
   }
 
 		.hero-arrow--left {
@@ -232,10 +251,10 @@ html, body {
 		 @apply right-[12px]; 
 	}
 
-		.hero-controls { @apply bottom-[82px]; }
+		.hero-controls { @apply bottom-[28px]; }
 
 	.hero-dots .dot { 
-    @apply w-[16px] h-[16px]; 
+	@apply w-[16px] h-[16px]; 
   }
 }
 
