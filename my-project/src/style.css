@@ -772,3 +772,102 @@ html, body {
 }
 
 
+
+/* Earnings / Advertising section styles */
+.earnings-section { position: relative; overflow: visible; margin-top: 320px; background: transparent; }
+.earnings-section .mx-auto { position: relative; z-index: 10; }
+.earnings-title {
+	font-weight: 900;
+	font-style: italic;
+	font-size: 40px;
+	color: #1E1E1E;
+	line-height: 1.02;
+}
+.earnings-sub {
+	color: #1E1E1E;
+	font-size: 20px;
+	margin-top: 8px;
+}
+.earnings-list { list-style: none; padding: 0; margin: 0; margin-top: 18px; }
+.earnings-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 22px; line-height: 1.4; margin-bottom: 14px; color: #1E1E1E; }
+.earnings-list .list-icon { width: 22px; height: 22px; margin-top: 6px; }
+
+.earnings-right { position: relative; }
+.earnings-car { display: block; max-width: 100%; height: auto; transform: translateY(-60px); position: relative; z-index: 12; }
+
+/* White panel behind the car image (exact pixel size requested) */
+.earnings-car-bg {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 980px;
+	height: 481px;
+	background: #ffffff;
+	border-radius: 50px;
+	z-index: 6; 
+	pointer-events: none;
+	transform: translateY(10px); /* slight visual lift */
+}
+.earnings-coins { position: absolute; right: 8%; top: -10%; pointer-events: none; }
+.earnings-coins .coin { width: 56px; height: 56px; object-fit: contain; position: absolute; opacity: 0.95; }
+.earnings-coins .coin-1 { right: 8px; top: -12px; transform: translateY(0); animation: coin-bob 2200ms infinite ease-in-out; }
+.earnings-coins .coin-2 { right: 72px; top: 8px; transform: translateY(0); animation: coin-bob 2400ms 200ms infinite ease-in-out; }
+.earnings-coins .coin-3 { right: 136px; top: -8px; transform: translateY(0); animation: coin-bob 2000ms 400ms infinite ease-in-out; }
+
+@keyframes coin-bob {
+	0% { transform: translateY(0); }
+	50% { transform: translateY(-12px); }
+	100% { transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+	.earnings-section { padding-top: 24px; padding-bottom: 24px; margin-top: 140px; }
+	.earnings-title { font-size: 28px; }
+	.earnings-list li { font-size: 16px; }
+	.earnings-coins { display: none; }
+	.earnings-left, .earnings-right { width: 100%; }
+	.earnings-right { order: -1; margin-bottom: 16px; }
+	.earnings-car { transform: translateY(-20px); }
+}
+
+@media (max-width: 1200px) {
+	/* scale the white panel down on narrower desktops/tablets so it doesn't overflow */
+	.earnings-car-bg { width: 720px; height: 354px; right: 8px; }
+}
+
+@media (max-width: 900px) {
+	.earnings-car-bg { display: none; }
+}
+
+/* On wide screens shift the panel and image further right so they line up to the section edge */
+@media (min-width: 1400px) {
+	/* increased right offset to push panel further out */
+	.earnings-car-bg { right: -220px; }
+	.earnings-car { transform: translateY(-60px); }
+}
+
+@media (min-width: 1750px) {
+	/* larger screens: push even further */
+	.earnings-car-bg { right: -390px; }
+	.earnings-car { transform: translateY(-60px); }
+}
+
+/* New step layout (icons + divider + text) */
+.earnings-steps { display: flex; align-items: flex-start; }
+.icons-col { width: 72px; flex: 0 0 72px; }
+.step-icon { object-fit: contain; display: block; }
+.steps-divider { width: 2px; background: #E6E6E6; margin: 4px 12px; border-radius: 2px; }
+.icons-sep { width: 4px; height: 44px; background: #D9D9D9; border-radius: 4px; }
+.icons-sep--short { height: 36px; }
+.icons-sep--long { height: 72px; }
+.text-col { flex: 1 1 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+.step-text { color: #1E1E1E; font-size: 24px; line-height: 1.45; margin: 0; }
+
+@media (max-width: 900px) {
+  .earnings-steps { flex-direction: row; gap: 12px; }
+	.icons-col { display: none; }
+  .steps-divider { display: none; }
+  .step-text { font-size: 16px; }
+}
+
+
