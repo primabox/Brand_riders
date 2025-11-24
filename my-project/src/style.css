@@ -15,7 +15,7 @@ body {
 /* utility class: solid-name-styled gradient for sections that should match the header
    Use `bg-gradient-red` on elements to get the same horizontal red gradient as the site header. */
 .bg-gradient-red {
-	@apply bg-gradient-to-r from-[#C40228] to-[#ED3D1A] z-50;
+	@apply bg-gradient-to-r from-[#C40228] to-[#ED3D1A];
 }
 
 .header-link {
