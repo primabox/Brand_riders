@@ -1,13 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Cresta:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-html, body {
+html,
+body {
 	font-family: 'Cresta', sans-serif;
 	background-color: #F2F2F2;
 	overflow-x: hidden;
 }
 
 .gradient-red {
+	@apply bg-gradient-to-r from-[#C40228] to-[#ED3D1A] z-50;
+}
+
+/* utility class: solid-name-styled gradient for sections that should match the header
+   Use `bg-gradient-red` on elements to get the same horizontal red gradient as the site header. */
+.bg-gradient-red {
 	@apply bg-gradient-to-r from-[#C40228] to-[#ED3D1A] z-50;
 }
 
@@ -26,7 +33,10 @@ html, body {
 .hero-link--pill {
 	@apply bg-[#0FC26C] text-white font-black italic rounded-full inline-flex items-center justify-center cursor-pointer h-[38px] w-[218px] mt-20 text-[18px] transition duration-200 ease-in-out;
 }
-.hero-link--pill:hover { @apply opacity-95; }
+
+.hero-link--pill:hover {
+	@apply opacity-95;
+}
 
 /* pill used for feature links/buttons (exact requested size and style) */
 .features-link-pill {
@@ -46,17 +56,21 @@ html, body {
 	cursor: pointer;
 	text-decoration: none;
 }
-.features-link-pill:hover { opacity: 0.95; }
+
+.features-link-pill:hover {
+	opacity: 0.95;
+}
 
 .header-link--icon {
-	@apply px-4 py-3 rounded-md text-white hover:bg-white/20 hover:shadow-md cursor-pointer transition duration-200 ease-in-out flex flex-col items-center  justify-center z-50;
+	@apply px-4 py-3 rounded-md text-white hover:bg-white/20 hover:shadow-md cursor-pointer transition duration-200 ease-in-out flex flex-col items-center justify-center z-50;
 	background: transparent;
 }
 
 .header-link--icon .hamburger-bar {
 	@apply block w-9 h-[3px] bg-white rounded transition-colors duration-200 ease-in-out;
 }
-.header-link--icon .hamburger-bar + .hamburger-bar {
+
+.header-link--icon .hamburger-bar+.hamburger-bar {
 	@apply mt-[5px];
 }
 
@@ -68,6 +82,7 @@ html, body {
 	position: relative;
 	overflow: visible;
 }
+
 .hero-bg::before {
 	content: '';
 	position: absolute;
@@ -85,7 +100,8 @@ html, body {
 	border-bottom-left-radius: 50px;
 	border-bottom-right-radius: 50px;
 }
-.hero-bg > * {
+
+.hero-bg>* {
 	position: relative;
 	z-index: 10;
 }
@@ -98,11 +114,13 @@ html, body {
 	position: relative;
 	transform: translateY(-55px);
 }
+
 .hero-slides-track {
 	display: flex;
-	transition: transform 600ms cubic-bezier(.2,.9,.3,1);
+	transition: transform 600ms cubic-bezier(.2, .9, .3, 1);
 	will-change: transform;
 }
+
 .hero-slides-track .hero-slide {
 	flex: 0 0 100vw;
 	display: flex;
@@ -115,7 +133,7 @@ html, body {
 }
 
 .hero-slide--3 .hero-left .hero-title {
-  @apply text-[76px] ;
+	@apply text-[76px];
 }
 
 /* Slide 5 specific title sizing */
@@ -157,44 +175,98 @@ html, body {
 	margin-bottom: 0;
 }
 
-.hero-icon-sidecar { @apply w-[128px] h-[60px];} 
-.hero-icon-sidecar-second { @apply w-[116px] h-[54px] ml-3;} 
+.hero-icon-sidecar {
+	@apply w-[128px] h-[60px];
+}
 
-.hero-icon-pig { @apply w-[85px] h-[80px] ml-6;} 
+.hero-icon-sidecar-second {
+	@apply w-[116px] h-[54px] ml-3;
+}
 
-.hero-icon-money { @apply w-[91px] h-[66px];} 
-.hero-icon-money-second { @apply w-[82px] h-[60px] ml-6;} 
+.hero-icon-pig {
+	@apply w-[85px] h-[80px] ml-6;
+}
 
-.hero-icon-carfront { @apply w-[59px] h-[52px];}
-.hero-icon-carfront-second { @apply w-[71px] h-[62px] ml-6;}
+.hero-icon-money {
+	@apply w-[91px] h-[66px];
+}
 
-.hero-icon-persowave { @apply w-[51px] h-[61px] ;}
+.hero-icon-money-second {
+	@apply w-[82px] h-[60px] ml-6;
+}
 
-.hero-icon-mobilecheck { @apply w-[44px] h-[65px]; }
+.hero-icon-carfront {
+	@apply w-[59px] h-[52px];
+}
 
-.hero-icon-shield { @apply w-[47px] h-[59px]; }
+.hero-icon-carfront-second {
+	@apply w-[71px] h-[62px] ml-6;
+}
 
-.hero-icon-gas-pump { @apply w-[51px] h-[56px]; }
+.hero-icon-persowave {
+	@apply w-[51px] h-[61px];
+}
 
-.hero-icon-shield { @apply w-[47px] h-[59px]; }
+.hero-icon-mobilecheck {
+	@apply w-[44px] h-[65px];
+}
 
-.hero-icon-sidecar, .hero-icon-pig, .hero-icon-money, .hero-icon-shield, .hero-icon-gas-pump { vertical-align: middle; }
+.hero-icon-shield {
+	@apply w-[47px] h-[59px];
+}
 
-.hero-icon-carfront, .hero-icon-persowave { vertical-align: middle; }
+.hero-icon-gas-pump {
+	@apply w-[51px] h-[56px];
+}
+
+.hero-icon-shield {
+	@apply w-[47px] h-[59px];
+}
+
+.hero-icon-sidecar,
+.hero-icon-pig,
+.hero-icon-money,
+.hero-icon-shield,
+.hero-icon-gas-pump {
+	vertical-align: middle;
+}
+
+.hero-icon-carfront,
+.hero-icon-persowave {
+	vertical-align: middle;
+}
 
 /* new icon sizes requested: tire (55x55) and wrench (52x52) */
-.hero-icon-tire { @apply w-[55px] h-[55px]; }
-.hero-icon-wrench { @apply w-[52px] h-[52px]; }
+.hero-icon-tire {
+	@apply w-[55px] h-[55px];
+}
 
-.hero-icon-tire, .hero-icon-wrench { vertical-align: middle; }
+.hero-icon-wrench {
+	@apply w-[52px] h-[52px];
+}
+
+.hero-icon-tire,
+.hero-icon-wrench {
+	vertical-align: middle;
+}
 
 /* new icon: nocrash (66x66) */
-.hero-icon-nocrash { @apply w-[66px] h-[66px]; }
-.hero-icon-nocrash { vertical-align: middle; }
+.hero-icon-nocrash {
+	@apply w-[66px] h-[66px];
+}
+
+.hero-icon-nocrash {
+	vertical-align: middle;
+}
 
 /* new icon: shine (74x74) */
-.hero-icon-shine { @apply w-[74px] h-[74px]; }
-.hero-icon-shine { vertical-align: middle; }
+.hero-icon-shine {
+	@apply w-[74px] h-[74px];
+}
+
+.hero-icon-shine {
+	vertical-align: middle;
+}
 
 .hero-icon-fade {
 	opacity: 0;
@@ -202,28 +274,53 @@ html, body {
 }
 
 @keyframes hero-fade-in {
-	from { opacity: 0; transform: translateY(6px); }
-	to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes hero-bob {
-	0% { transform: translateY(0); }
-	50% { transform: translateY(-8px); }
-	100% { transform: translateY(0); }
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-8px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
 }
 
-.hero-icon { transform-origin: center center; transition: transform 200ms linear; }
+.hero-icon {
+	transform-origin: center center;
+	transition: transform 200ms linear;
+}
 
 .hero-animate {
 	opacity: 0;
 	transform: translateY(24px);
-	animation: hero-fade-up 900ms cubic-bezier(.2,.9,.3,1) forwards;
+	animation: hero-fade-up 900ms cubic-bezier(.2, .9, .3, 1) forwards;
 	animation-delay: var(--delay, 0ms);
 }
 
 @keyframes hero-fade-up {
-	from { opacity: 0; transform: translateY(24px); }
-	to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(24px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .hero-badge {
@@ -255,7 +352,7 @@ html, body {
 
 /* copy of hero-car for tire graphics */
 .hero-tires {
-    @apply block relative right-0 bottom-0 mt-[170px];
+	@apply block relative right-0 bottom-0 mt-[170px];
 }
 
 .hero-motorcyclists {
@@ -278,6 +375,7 @@ html, body {
 .slide5shieldbadge {
 	@apply block relative right-0 bottom-0 mt-[170px];
 }
+
 .slide5pumpbadge {
 	@apply block relative left-30 bottom-20 mt-[170px];
 }
@@ -288,8 +386,14 @@ html, body {
 	@apply absolute w-[40px] h-[40px] rounded-full flex items-center justify-center text-white text-[26px] z-60 cursor-pointer bg-transparent top-1/2 -translate-y-1/2;
 
 }
-.hero-arrow--left { @apply left-[80px]; }
-.hero-arrow--right { @apply right-[80px]; }
+
+.hero-arrow--left {
+	@apply left-[80px];
+}
+
+.hero-arrow--right {
+	@apply right-[80px];
+}
 
 .hero-dots-wrap {
 	/* show only a sliding window of 5 dots */
@@ -300,6 +404,7 @@ html, body {
 	width: calc((var(--dot-step) * var(--visible-dots)) - var(--dot-gap));
 	overflow: hidden;
 }
+
 .hero-dots {
 	display: flex;
 	gap: var(--dot-gap);
@@ -307,9 +412,10 @@ html, body {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	transition: transform 320ms cubic-bezier(.2,.9,.3,1);
+	transition: transform 320ms cubic-bezier(.2, .9, .3, 1);
 	will-change: transform;
 }
+
 .hero-dots .dot {
 	width: var(--dot-size);
 	height: var(--dot-size);
@@ -318,6 +424,7 @@ html, body {
 	transition: all 200ms ease-in-out;
 	flex: 0 0 auto;
 }
+
 .hero-dots .dot.active {
 	background: #0FC26C;
 	transform: scale(1.05);
@@ -327,46 +434,69 @@ html, body {
 	/* moved further higher per request */
 	@apply absolute inset-x-0 bottom-[96px] w-full pointer-events-none flex items-center justify-center h-[26px];
 }
+
 .hero-controls .hero-arrow,
-.hero-controls .hero-dots { @apply pointer-events-auto; }
+.hero-controls .hero-dots {
+	@apply pointer-events-auto;
+}
 
 
 @media (max-width: 900px) {
-	.hero-carousel { 
-	@apply flex-col gap-8 items-start; 
-  }
+	.hero-carousel {
+		@apply flex-col gap-8 items-start;
+	}
 
 	/* Slightly reduce the upward offset on smaller screens */
 	.hero-slides {
 		transform: translateY(-30px);
 	}
 
-	.hero-left, .hero-right { 
-	@apply w-full; 
-  }
-
-	.hero-left { 
-	@apply pr-0; 
-  }
-
-		.hero-arrow--left {
-		 @apply left-[12px]; 
+	.hero-left,
+	.hero-right {
+		@apply w-full;
 	}
 
-		.hero-arrow--right {
-		 @apply right-[12px]; 
+	.hero-left {
+		@apply pr-0;
 	}
 
-		.hero-controls { @apply bottom-[64px]; }
+	.hero-arrow--left {
+		@apply left-[12px];
+	}
 
-		.hero-dots-wrap { --dot-size: 16px; --dot-gap: 10px; }
-		.hero-dots .dot { width: var(--dot-size); height: var(--dot-size); }
+	.hero-arrow--right {
+		@apply right-[12px];
+	}
+
+	.hero-controls {
+		@apply bottom-[64px];
+	}
+
+	.hero-dots-wrap {
+		--dot-size: 16px;
+		--dot-gap: 10px;
+	}
+
+	.hero-dots .dot {
+		width: var(--dot-size);
+		height: var(--dot-size);
+	}
 }
 
 /* Features / Benefits section styles */
-.features-section { @apply py-20; position: relative; overflow: visible; }
-.feature-card { @apply bg-white rounded-[50px] py-6 pr-6 pl-12 shadow-md; }
-.features-right img { @apply block; }
+.features-section {
+	@apply py-20;
+	position: relative;
+	overflow: visible;
+}
+
+.feature-card {
+	@apply bg-white rounded-[50px] py-6 pr-6 pl-12 shadow-md;
+}
+
+.features-right img {
+	@apply block;
+}
 
 /* Make the right-side illustration fill the column (desktop) */
 .features-right {
@@ -403,6 +533,7 @@ html, body {
 }
 
 @media (max-width: 900px) {
+
 	/* on smaller screens keep natural height so image doesn't force large blocks */
 	.features-right img {
 		height: auto !important;
@@ -435,14 +566,17 @@ html, body {
 /* Desktop: make the download columns stretch so right column can align to bottom */
 @media (min-width: 900px) {
 	.download-inner {
-		align-items: stretch; /* ensure children fill height */
+		align-items: stretch;
+		/* ensure children fill height */
 	}
 
 	.download-right {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-end; /* align content to bottom of column */
-		margin-bottom: 50px; /* requested bottom margin */
+		justify-content: flex-end;
+		/* align content to bottom of column */
+		margin-bottom: 50px;
+		/* requested bottom margin */
 		height: 100%;
 	}
 }
@@ -461,25 +595,45 @@ html, body {
 	overflow: visible;
 	margin-top: 140px;
 }
-.download-section .download-inner { max-width: 1550px; margin: 0 auto; }
-.download-section .container { position: relative; z-index: 20; }
-.download-section .download-inner { max-width: 1550px; margin: 0 auto; }
+
+.download-section .download-inner {
+	max-width: 1550px;
+	margin: 0 auto;
+}
+
+.download-section .container {
+	position: relative;
+	z-index: 20;
+}
+
+.download-section .download-inner {
+	max-width: 1550px;
+	margin: 0 auto;
+}
+
 /* Ensure any direct child wrapper inside the download section sits above the breakout image
    (some templates don't use a `.container` class — target the direct child and the
 	`.download-inner` specifically). */
-.download-section > div,
+.download-section>div,
 .download-section .download-inner {
 	position: relative;
 	z-index: 20;
 }
-.download-title { color: #1E1E1E; }
-.qr-placeholder { display: inline-block; }
+
+.download-title {
+	color: #1E1E1E;
+}
+
+.qr-placeholder {
+	display: inline-block;
+}
 
 /* Image container for the download-left column */
 .download-img-container {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start; /* left align inside the column */
+	justify-content: flex-start;
+	/* left align inside the column */
 	padding-left: 70px;
 	/* exact requested size and allow overflow so illustration can bleed */
 	width: 1009px;
@@ -487,6 +641,7 @@ html, body {
 	overflow: visible;
 	position: relative;
 }
+
 .download-img {
 	max-width: none;
 	width: auto;
@@ -513,9 +668,14 @@ html, body {
 }
 
 /* Nudge QR image to the right on desktop; reset on small screens */
-.qr-codes { transform: translateX(165px); }
+.qr-codes {
+	transform: translateX(165px);
+}
+
 @media (max-width: 900px) {
-	.qr-codes { transform: none; }
+	.qr-codes {
+		transform: none;
+	}
 }
 
 /* QR grid for badges/cards */
@@ -523,8 +683,9 @@ html, body {
 	display: flex;
 	gap: 2rem;
 	align-items: flex-start;
-	margin-left: 160px; /* align cards with art/title */
-	margin-top: 20px; 
+	margin-left: 160px;
+	/* align cards with art/title */
+	margin-top: 20px;
 }
 
 /* Square cards (250x285) used instead of the single QR image */
@@ -549,8 +710,14 @@ html, body {
 		height: auto;
 		min-height: 200px;
 	}
-	.qr-grid { margin-left: 0; }
-	.qr-grid { margin-top: 0; }
+
+	.qr-grid {
+		margin-left: 0;
+	}
+
+	.qr-grid {
+		margin-top: 0;
+	}
 }
 
 /* image inside QR card (centered) */
@@ -570,7 +737,10 @@ html, body {
 }
 
 @media (max-width: 900px) {
-	.qr-card__img { width: 110px; height: 110px; }
+	.qr-card__img {
+		width: 110px;
+		height: 110px;
+	}
 }
 
 /* store badge below each QR */
@@ -580,25 +750,35 @@ html, body {
 }
 
 @media (max-width: 900px) {
-	.qr-badge { width: 110px; }
+	.qr-badge {
+		width: 110px;
+	}
 }
 
 /* Text block above the QR cards */
 .qr-text {
-	width: 510px; /* exact requested width */
+	width: 510px;
+	/* exact requested width */
 	color: #1E1E1E;
 	font-size: 20px;
 	line-height: 1.3;
-	margin-left: 160px; /* align with cards/title */
+	margin-left: 160px;
+	/* align with cards/title */
 	margin-bottom: 12px;
 }
 
 @media (max-width: 900px) {
-	.qr-text { width: 100%; margin-left: 0; font-size: 16px; }
+	.qr-text {
+		width: 100%;
+		margin-left: 0;
+		font-size: 16px;
+	}
 }
 
 @media (max-width: 600px) {
-	.qr-grid { gap: 0.6rem; }
+	.qr-grid {
+		gap: 0.6rem;
+	}
 }
 
 /* Title above QR codes in download section */
@@ -608,23 +788,39 @@ html, body {
 	font-size: 44px;
 	text-transform: uppercase;
 	color: #1E1E1E;
-	margin: 120px 0 14px 160px; /* align with cards */
+	margin: 120px 0 14px 160px;
+	/* align with cards */
 	line-height: 1.02;
 }
 
 @media (max-width: 900px) {
-	.download-qr-title { font-size: 28px; margin-left: 0; }
+	.download-qr-title {
+		font-size: 28px;
+		margin-left: 0;
+	}
 }
 
 @media (max-width: 900px) {
+
 	/* undo left-nudge on small screens */
-	.download-img { transform: none; }
-	.download-img-container { width: 100%; height: auto; }
+	.download-img {
+		transform: none;
+	}
+
+	.download-img-container {
+		width: 100%;
+		height: auto;
+	}
 }
 
 @media (max-width: 900px) {
-	.features-right { @apply order-first mb-6; }
-	.features-left { @apply order-last; }
+	.features-right {
+		@apply order-first mb-6;
+	}
+
+	.features-left {
+		@apply order-last;
+	}
 }
 
 /* Feature header style: bold italic 44px */
@@ -662,12 +858,14 @@ html, body {
 	right: -240px;
 	bottom: 430px;
 	max-width: none;
-	z-index: 5; /* behind the container (container z-index:20) */
+	z-index: 5;
+	/* behind the container (container z-index:20) */
 	pointer-events: none;
 	display: block;
 	object-fit: cover;
 	transform: translateY(10px);
 }
+
 /* small decorative bar above the first feature header */
 .feature-header-bar {
 	width: 100px;
@@ -695,10 +893,62 @@ html, body {
 	margin-bottom: 14px;
 }
 
+/* Community feature component classes (use Tailwind @apply for reuse) */
+@layer components {
+	.community-feature-title {
+		@apply font-bold text-[24px];
+	}
+
+	.community-feature-desc {
+		@apply text-[#1E1E1E] text-[24px] leading-tight tracking-tight;
+	}
+
+	.center-features-gap {
+		@apply gap-3;
+	}
+}
+
+/* Fallback plain-CSS rules (in case Tailwind/PostCSS @apply isn't processed) */
+.community-feature-title {
+	font-weight: 700;
+	font-size: 24px;
+	color: #1E1E1E;
+	margin-bottom: 4px;
+}
+
+.community-feature-desc {
+	color: #1E1E1E;
+	font-size: 24px;
+	line-height: 1.02;
+	letter-spacing: -0.02em;
+	margin-top: 0;
+}
+
+/* Label inside community card (fallback styles) */
+.community-card-label {
+	font-weight: 700;
+	font-style: italic;
+	font-size: 32px;
+	color: #1E1E1E;
+	text-transform: uppercase;
+	margin: 0;
+	transform: translateY(40px);
+	will-change: transform;
+	line-height: 105%;
+}
+
+/* Icon row inside the community card — nudge icons downward using transform (prefers transform over margin) */
+.community-icon-row {
+	transform: translateY(18px);
+	will-change: transform;
+}
 
 
 
-.feature-header-icon { transform: translateY(0px); }
+
+.feature-header-icon {
+	transform: translateY(0px);
+}
 
 /* slightly smaller/green-icon variant used next to green header bar */
 .feature-header-icon--green {
@@ -713,8 +963,9 @@ html, body {
 
 
 .feature-item--top {
-    align-items: flex-start;
+	align-items: flex-start;
 }
+
 .feature-item--top .feature-item__icon {
 
 	transform: translateY(2px) translateX(-2px);
@@ -726,11 +977,11 @@ html, body {
 
 
 .features-text {
-    font-weight: 400;
-    font-size: 24px;
+	font-weight: 400;
+	font-size: 24px;
 	margin-top: 32px;
 	color: #1E1E1E;
-    line-height: 1.35;
+	line-height: 1.35;
 }
 
 /* small description line below header for the second feature card */
@@ -752,7 +1003,9 @@ html, body {
 }
 
 @media (max-width: 900px) {
-	.features-left { transform: translateX(0); }
+	.features-left {
+		transform: translateX(0);
+	}
 }
 
 /* Exact sizing for feature cards (desktop). Keep responsive fallback on mobile. */
@@ -760,22 +1013,48 @@ html, body {
 	box-sizing: border-box;
 	width: 686px;
 }
+
 .features-left .feature-card:first-of-type {
 	height: 431px;
 }
+
 .features-left .feature-card:nth-of-type(2) {
 	height: 691px;
 }
 
 @media (max-width: 900px) {
-	.features-left .feature-card { width: 100%; height: auto; }
+	.features-left .feature-card {
+		width: 100%;
+		height: auto;
+	}
+}
+
+/* Nudge specific left-top phone image down slightly */
+.lefttop-img {
+	transform: translateY(15px);
+	will-change: transform;
+}
+
+/* Nudge left-bottom phone image down slightly */
+.leftbottom-img {
+	transform: translateY(12px);
+	will-change: transform;
 }
 
 
-
 /* Earnings / Advertising section styles */
-.earnings-section { position: relative; overflow: visible; margin-top: 320px; background: transparent; }
-.earnings-section .mx-auto { position: relative; z-index: 10; }
+.earnings-section {
+	position: relative;
+	overflow: visible;
+	margin-top: 320px;
+	background: transparent;
+}
+
+.earnings-section .mx-auto {
+	position: relative;
+	z-index: 10;
+}
+
 .earnings-title {
 	font-weight: 900;
 	font-style: italic;
@@ -783,17 +1062,48 @@ html, body {
 	color: #1E1E1E;
 	line-height: 1.02;
 }
+
 .earnings-sub {
 	color: #1E1E1E;
 	font-size: 20px;
 	margin-top: 8px;
 }
-.earnings-list { list-style: none; padding: 0; margin: 0; margin-top: 18px; }
-.earnings-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 22px; line-height: 1.4; margin-bottom: 14px; color: #1E1E1E; }
-.earnings-list .list-icon { width: 22px; height: 22px; margin-top: 6px; }
 
-.earnings-right { position: relative; }
-.earnings-car { display: block; max-width: 100%; height: auto; transform: translateY(-60px); position: relative; z-index: 12; }
+.earnings-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	margin-top: 18px;
+}
+
+.earnings-list li {
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	font-size: 22px;
+	line-height: 1.4;
+	margin-bottom: 14px;
+	color: #1E1E1E;
+}
+
+.earnings-list .list-icon {
+	width: 22px;
+	height: 22px;
+	margin-top: 6px;
+}
+
+.earnings-right {
+	position: relative;
+}
+
+.earnings-car {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	transform: translateY(-60px);
+	position: relative;
+	z-index: 12;
+}
 
 /* White panel behind the car image (exact pixel size requested) */
 .earnings-car-bg {
@@ -804,70 +1114,258 @@ html, body {
 	height: 481px;
 	background: #ffffff;
 	border-radius: 50px;
-	z-index: 6; 
+	z-index: 6;
 	pointer-events: none;
-	transform: translateY(10px); /* slight visual lift */
+	transform: translateY(10px);
+	/* slight visual lift */
 }
-.earnings-coins { position: absolute; right: 8%; top: -10%; pointer-events: none; }
-.earnings-coins .coin { width: 56px; height: 56px; object-fit: contain; position: absolute; opacity: 0.95; }
-.earnings-coins .coin-1 { right: 8px; top: -12px; transform: translateY(0); animation: coin-bob 2200ms infinite ease-in-out; }
-.earnings-coins .coin-2 { right: 72px; top: 8px; transform: translateY(0); animation: coin-bob 2400ms 200ms infinite ease-in-out; }
-.earnings-coins .coin-3 { right: 136px; top: -8px; transform: translateY(0); animation: coin-bob 2000ms 400ms infinite ease-in-out; }
+
+.earnings-coins {
+	position: absolute;
+	right: 8%;
+	top: -10%;
+	pointer-events: none;
+}
+
+.earnings-coins .coin {
+	width: 56px;
+	height: 56px;
+	object-fit: contain;
+	position: absolute;
+	opacity: 0.95;
+}
+
+.earnings-coins .coin-1 {
+	right: 8px;
+	top: -12px;
+	transform: translateY(0);
+	animation: coin-bob 2200ms infinite ease-in-out;
+}
+
+.earnings-coins .coin-2 {
+	right: 72px;
+	top: 8px;
+	transform: translateY(0);
+	animation: coin-bob 2400ms 200ms infinite ease-in-out;
+}
+
+.earnings-coins .coin-3 {
+	right: 136px;
+	top: -8px;
+	transform: translateY(0);
+	animation: coin-bob 2000ms 400ms infinite ease-in-out;
+}
 
 @keyframes coin-bob {
-	0% { transform: translateY(0); }
-	50% { transform: translateY(-12px); }
-	100% { transform: translateY(0); }
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-12px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
 }
 
 @media (max-width: 900px) {
-	.earnings-section { padding-top: 24px; padding-bottom: 24px; margin-top: 140px; }
-	.earnings-title { font-size: 28px; }
-	.earnings-list li { font-size: 16px; }
-	.earnings-coins { display: none; }
-	.earnings-left, .earnings-right { width: 100%; }
-	.earnings-right { order: -1; margin-bottom: 16px; }
-	.earnings-car { transform: translateY(-20px); }
+	.earnings-section {
+		padding-top: 24px;
+		padding-bottom: 24px;
+		margin-top: 140px;
+	}
+
+	.earnings-title {
+		font-size: 28px;
+	}
+
+	.earnings-list li {
+		font-size: 16px;
+	}
+
+	.earnings-coins {
+		display: none;
+	}
+
+	.earnings-left,
+	.earnings-right {
+		width: 100%;
+	}
+
+	.earnings-right {
+		order: -1;
+		margin-bottom: 16px;
+	}
+
+	.earnings-car {
+		transform: translateY(-20px);
+	}
 }
 
 @media (max-width: 1200px) {
+
 	/* scale the white panel down on narrower desktops/tablets so it doesn't overflow */
-	.earnings-car-bg { width: 720px; height: 354px; right: 8px; }
+	.earnings-car-bg {
+		width: 720px;
+		height: 354px;
+		right: 8px;
+	}
 }
 
 @media (max-width: 900px) {
-	.earnings-car-bg { display: none; }
+	.earnings-car-bg {
+		display: none;
+	}
 }
 
 /* On wide screens shift the panel and image further right so they line up to the section edge */
 @media (min-width: 1400px) {
+
 	/* increased right offset to push panel further out */
-	.earnings-car-bg { right: -220px; }
-	.earnings-car { transform: translateY(-60px); }
+	.earnings-car-bg {
+		right: -220px;
+	}
+
+	.earnings-car {
+		transform: translateY(-60px);
+	}
 }
 
 @media (min-width: 1750px) {
+
 	/* larger screens: push even further */
-	.earnings-car-bg { right: -390px; }
-	.earnings-car { transform: translateY(-60px); }
+	.earnings-car-bg {
+		right: -450px;
+	}
+
+	.earnings-car {
+		transform: translateY(-60px);
+	}
 }
 
 /* New step layout (icons + divider + text) */
-.earnings-steps { display: flex; align-items: flex-start; }
-.icons-col { width: 72px; flex: 0 0 72px; }
-.step-icon { object-fit: contain; display: block; }
-.steps-divider { width: 2px; background: #E6E6E6; margin: 4px 12px; border-radius: 2px; }
-.icons-sep { width: 4px; height: 44px; background: #D9D9D9; border-radius: 4px; }
-.icons-sep--short { height: 36px; }
-.icons-sep--long { height: 72px; }
-.text-col { flex: 1 1 auto; display: flex; flex-direction: column; gap: 1.5rem; }
-.step-text { color: #1E1E1E; font-size: 24px; line-height: 1.45; margin: 0; }
-
-@media (max-width: 900px) {
-  .earnings-steps { flex-direction: row; gap: 12px; }
-	.icons-col { display: none; }
-  .steps-divider { display: none; }
-  .step-text { font-size: 16px; }
+.earnings-steps {
+	display: flex;
+	align-items: flex-start;
 }
 
+.icons-col {
+	width: 72px;
+	flex: 0 0 72px;
+}
 
+.step-icon {
+	object-fit: contain;
+	display: block;
+}
+
+.steps-divider {
+	width: 2px;
+	background: #E6E6E6;
+	margin: 4px 12px;
+	border-radius: 2px;
+}
+
+.icons-sep {
+	width: 4px;
+	height: 44px;
+	background: #D9D9D9;
+	border-radius: 4px;
+}
+
+.icons-sep--short {
+	height: 36px;
+}
+
+.icons-sep--long {
+	height: 72px;
+}
+
+.text-col {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.step-text {
+	color: #1E1E1E;
+	font-size: 24px;
+	line-height: 1.10;
+	margin: 0;
+	width: 670px;
+	box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+	.earnings-steps {
+		flex-direction: row;
+		gap: 12px;
+	}
+
+	.icons-col {
+		display: none;
+	}
+
+	.steps-divider {
+		display: none;
+	}
+
+	.step-text {
+		font-size: 16px;
+	}
+}
+
+/* Ensure step text doesn't overflow on small screens */
+@media (max-width: 900px) {
+	.step-text {
+		width: 100%;
+	}
+}
+
+/* Community section tweaks */
+@media (min-width: 900px) {
+	.community-section {
+		overflow: visible;
+	}
+
+	/* lift the right-top container up to match reference artwork */
+	.community-section .community-right-top {
+		z-index: 20;
+	}
+}
+
+/* Nudge the right-top phone mockup slightly upward using transform */
+.righttop-img {
+	transform: translateY(-21px);
+	will-change: transform;
+}
+
+/* Right-bottom card text styling: bold, italic, 28px, color #1E1E1E */
+.community-right-bottom-text {
+	font-weight: 700;
+	font-style: italic;
+	font-size: 28px;
+	color: #1E1E1E;
+	text-transform: uppercase;
+	margin: 0;
+	line-height: 1.08;
+	text-align: center;
+}
+
+/* Bottom icons row inside community right column (five icons in order) */
+.community-bottom-icons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	margin-bottom: 30px;
+}
+
+.community-bottom-icons .community-bottom-icon {
+	display: block;
+	margin: 0;
+	object-fit: contain;
+}
