@@ -539,41 +539,116 @@
   </section>
 
 
-  <section class="showcase-carousel py-12">
-    <div class="mx-auto max-w-[1550px] px-6 flex items-center justify-between">
+  <section class="showcase-carousel pt-48 pb-24">
+    <div class="mx-auto max-w-[1550px] px-[72px] flex items-center justify-between">
       <!-- Left: text area styled like photo 2 -->
-      <div class="showcase-text relative w-1/2 pr-8">
-        <h3 class="uppercase text-[28px] font-black">UKÁZKY REKLAMNÍCH KAMPANÍ</h3>
-        <p class="mt-4 text-[16px] text-[#1E1E1E]">Prohlédněte si vybrané realizace a příklady polepů vozidel.
-          Přiblížíme vám, jak může vaše auto vypadat v kampani.</p>
+      <div class="showcase-text relative w-1/2 ">
+        <h3 class="uppercase text-[44px] font-black italic" style="margin-top:-160px; margin-bottom: 100px;">UKÁZKY
+          REKLAMNÍCH KAMPANÍ</h3>
+        <div class="showcase-logo mb-4">
+          <img src="img/logos/canapuffLogo.png" alt="Canapuff logo" class="max-w-[330px] h-[90px]" />
+        </div>
+        <p class="mt-4 text-[18px] text-[#1E1E1E]">Canapuff ponúka kvety, vapy, gummies, <br> hash a cartridge z rôznych
+          kanabinoidov</p>
+
         <!-- large arrows positioned beside the text (left/right) -->
         <button
-          class="showcase-prev absolute -left-12 top-1/2 transform -translate-y-1/2 text-[#1E1E1E] bg-transparent w-12 h-12 flex items-center justify-center z-40 text-[28px]"
-          aria-label="Předchozí">‹</button>
+          class="showcase-prev absolute cursor-pointer -left-[150px] top-1/2 transform -translate-y-1/2 text-[#1E1E1E] bg-transparent w-12 h-12 flex items-center justify-center z-40 text-[28px]"
+          aria-label="Předchozí"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
         <button
-          class="showcase-next absolute -right-12 top-1/2 transform -translate-y-1/2 text-[#1E1E1E] bg-transparent w-12 h-12 flex items-center justify-center z-40 text-[28px]"
-          aria-label="Další">›</button>
+          class="showcase-next absolute  cursor-pointer -right-[-130px] top-1/2 transform -translate-y-1/2 text-[#1E1E1E] bg-transparent w-12 h-12 flex items-center justify-center z-40 text-[28px]"
+          aria-label="Další"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
       </div>
 
       <!-- Right: image carousel -->
-      <div class="showcase-slider w-[700px] h-[360px] relative flex items-center justify-center overflow-hidden">
-        <!-- prev/next moved to the left text column -->
+      <div class="showcase-slider w-[700px] h-[360px] relative flex items-center justify-center overflow-visible" style="transform: translateX(80px);">
+        <!--  slide  1-->
         <div class="slide absolute inset-0 flex items-center justify-center">
-          <img src="img/Artboard1.png" alt="Ukázka kampaně 1" class="max-w-full max-h-[340px] object-contain" />
+          <img src="img/slides/car1.png" alt="Ukázka kampaně 1" class="max-w-[960px] max-h-[540px] object-contain" />
+          <div class="showcase-logo sr-only" aria-hidden="true"><img src="img/logos/canapuffLogo.png" alt="Canapuff logo" class="w-[330px] h-[90px]"/></div>
+          <div class="slide-title sr-only" aria-hidden="true">UKÁZKY REKLAMNÍCH KAMPANÍ</div>
+          <div class="slide-desc sr-only" aria-hidden="true">Canapuff ponúka kvety, vapy, gummies, <br> hash a cartridge z rôznych kanabinoidov</div>
         </div>
-        <div class="slide hidden absolute inset-0 flex items-center justify-center">
-          <img src="img/carCoins.png" alt="Ukázka kampaně 2" class="max-w-full max-h-[340px] object-contain" />
+
+        <!-- slide 2  -->
+        <div class="slide absolute inset-0 flex items-center justify-center">
+          <img src="img/slides/car2.png" alt="Ukázka kampaně 2" class="max-w-[1049px] max-h-[540px] object-contain" />
+          <div class="showcase-logo sr-only" aria-hidden="true"><img src="img/logos/biogroupLogo.png" alt="Biogroup logo" class="w-[241px] h-[128px]" style="transform: translateY(-20px);"/></div>
+          <div class="slide-title sr-only" aria-hidden="true">MÁME SKÚSENOSTI<br>S KAMPAŇAMI</div>
+          <div class="slide-desc sr-only" aria-hidden="true">Renomovaná talianska <br> medicínska spoločnosť</div>
         </div>
-        <div class="slide hidden absolute inset-0 flex items-center justify-center">
-          <img src="img/roadcar.png" alt="Ukázka kampaně 3" class="max-w-full max-h-[340px] object-contain" />
+
+        <!-- slide 3  -->
+        <div class="slide absolute inset-0 flex items-center justify-center">
+          <img src="img/slides/car3.png" alt="Ukázka kampaně 2" class="max-w-[1049px] max-h-[582px] object-contain" />
+          <div class="showcase-logo sr-only" aria-hidden="true"><img src="img/logos/oktagonLogo.png" alt="Biogroup logo" class="w-[324px] h-[50px]" style="transform: translateY(0px);"/></div>
+          <div class="slide-title sr-only" aria-hidden="true">MÁME SKÚSENOSTI<br>S KAMPAŇAMI</div>
+          <div class="slide-desc sr-only" aria-hidden="true">Česko-slovenská MMA organizácia založená v roku <br> 2016 Ondřejom Novotným a Pavlom Nerudom</div>
         </div>
-        <!-- next button moved to the left text column -->
+
+        <!-- slide 4  -->
+        <div class="slide absolute inset-0 flex items-center justify-center">
+          <img src="img/slides/car4.png" alt="Ukázka kampaně 2" class="max-w-[1049px] max-h-[582px] object-contain" />
+          <div class="showcase-logo sr-only" aria-hidden="true"><img src="img/logos/pizzahutLogo.png" alt="Biogroup logo" class="w-[314px] h-[65px]" style="transform: translateY(0px);"/></div>
+          <div class="slide-title sr-only" aria-hidden="true">MÁME SKÚSENOSTI<br>S KAMPAŇAMI</div>
+          <div class="slide-desc sr-only" aria-hidden="true">Pizza Hut je americký franšízový <br> reštauračný reťazec</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="map-trail-section py-20">
+    <div class="mx-auto max-w-[1450px] px-6">
+      <div class="map-trail-bar-wrap ">
+        <div class="map-trail-bar gradient-red w-[100px] h-[20px] rounded-full" aria-hidden="true"></div>
+      </div>
+      <h2 class="text-[64px] font-black italic mb-24 text-left">AKO TO CELÉ FUNGUJE</h2>
+
+      <div class="map-trail relative  rounded-[18px] p-6 overflow-hidden">
+        <!-- absolute, fixed-position car icon that will be moved with JS (using viewport coords) -->
+        <img id="mapCar" src="img/map/car.png" alt="Car" class="map-car" aria-hidden="true" />
+
+        <!-- SVG wrapper: image + invisible path used for motion calculations -->
+        <svg id="mapTrailSvg" viewBox="0 0 1165 2130" preserveAspectRatio="xMidYMid meet" class="block w-full h-auto">
+          <image href="img/map/mapTrail.png" x="0" y="0" width="1165" height="2130" preserveAspectRatio="xMidYMid meet" />
+
+          <!-- Placeholder path: adjust `d` to precisely match the blue trail if you export the vector path. -->
+          <path id="trailPath" d="M 100 150 C 220 40, 460 60, 540 180 C 620 300, 760 320, 820 420 C 880 520, 920 600, 980 660 C 1040 720, 1060 840, 1040 980 C 1020 1120, 900 1180, 780 1260 C 660 1340, 560 1400, 420 1480 C 280 1560, 220 1640, 180 1740 C 140 1840, 160 1960, 220 2040"
+            fill="none" stroke="transparent" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-section py-20 h-[584px]">
+    <div class="max-w-[1350px] px-0 mx-0">
+      <div class="promo-inner flex flex-col md:flex-row items-center gap-10 h-full">
+
+        <!-- Left: fixed-width gradient block (622px) -->
+        <div class="promo-gradient w-[1283px] h-[622px] rounded-tr-[50px] rounded-br-[50px] overflow-hidden">
+          <div class="promo-left px-8 py-10 text-white h-full flex flex-col justify-center">
+            <h2 class="text-[48px] font-black italic mb-4">Přidejte se k Brand Riders</h2>
+            <p class="w-[355px] text-[18px] text-[#FAFAFA] mb-6">Prišlo vám zdraženie alebo hľadáte férové poistenie? Získajte <br> najvýhodnejšie ceny a jedinečný servis!</p>
+            <div class="promo-cta">
+              <a href="#" class="inline-block bg-white text-[#D21F2F] font-bold px-6 py-3 rounded-full">ZAREGISTRUJTE SE</a>
+              <a href="#" class="ml-4 inline-block text-white/90 underline">Zjistit více</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: content outside gradient (image takes remaining space) -->
+        <div class="promo-right flex-1 md:pl-8">
+          <img src="img/promo-car.png" alt="Promo car" class="w-full rounded-[12px] shadow-md" />
+        </div>
+
       </div>
     </div>
   </section>
 
   <script type="module" src="src/showcase-carousel.js"></script>
   <script type="module" src="src/carousel.js"></script>
+  <script type="module" src="src/map-trail.js"></script>
 
 
 

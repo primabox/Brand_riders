@@ -18,6 +18,12 @@ body {
 	@apply bg-gradient-to-r from-[#C40228] to-[#ED3D1A];
 }
 
+/* Dedicated promo gradient to be used only for the promo CTA section. */
+.promo-gradient {
+	/* left-to-right red gradient matching the brand */
+	background: linear-gradient(90deg, #C40228 0%, #ED3D1A 100%);
+}
+
 .header-link {
 	@apply text-white uppercase font-black italic text-[20px] tracking-wide inline-flex items-center gap-2 px-4 py-2 transition duration-200 ease-in-out;
 }
@@ -1368,4 +1374,84 @@ body {
 	display: block;
 	margin: 0;
 	object-fit: contain;
+}
+
+/* Make showcase prev/next arrows visually thicker/larger */
+.showcase-prev,
+.showcase-next {
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.showcase-prev i,
+.showcase-next i {
+	font-size: 34px;
+	line-height: 1;
+	color: #1E1E1E;
+	-webkit-font-smoothing: antialiased;
+	transform: translateY(0.5px);
+}
+
+@media (max-width: 800px) {
+	.showcase-prev,
+	.showcase-next {
+		width: 40px;
+		height: 40px;
+	}
+
+	.showcase-prev i,
+	.showcase-next i {
+		font-size: 26px;
+	}
+}
+
+
+/* Nudge the main showcase slide image slightly upward to match reference */
+.showcase-slider .slide img {
+	transform: translateY(-10px);
+	transition: transform 220ms ease;
+}
+
+@media (max-width: 900px) {
+	.showcase-slider .slide img {
+		transform: translateY(-6px);
+	}
+}
+
+/* Smooth fade for text/logo when slides change */
+.showcase-text h3,
+.showcase-text .showcase-logo img,
+.showcase-text p {
+	transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* Map trail styles (car + svg) */
+.map-trail {
+	position: relative;
+}
+
+#mapTrailSvg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.map-car {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 56px;
+	height: auto;
+	transform: translate(-50%, -50%) rotate(0deg);
+	will-change: transform, opacity;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 240ms linear;
+}
+
+@media (max-width: 768px) {
+	.map-car { display: none; }
 }
