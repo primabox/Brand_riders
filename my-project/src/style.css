@@ -24,6 +24,22 @@ body {
 	background: linear-gradient(90deg, #C40228 0%, #ED3D1A 100%);
 }
 
+/* promo-cta container: centers the CTA horizontally within the promo-left block */
+.promo-cta {
+	@apply flex justify-center;
+	/* fallback for environments without Tailwind processing */
+	display: flex;
+	justify-content: left;
+	width: 100%;
+	margin-top: 8px;
+}
+
+/* ensure promo CTA anchor text renders centered vertically across browsers */
+.promo-cta a {
+	line-height: 1;
+	vertical-align: middle;
+}
+
 .header-link {
 	@apply text-white uppercase font-black italic text-[20px] tracking-wide inline-flex items-center gap-2 px-4 py-2 transition duration-200 ease-in-out;
 }
@@ -382,6 +398,79 @@ body {
 	@apply block relative right-0 bottom-0 mt-[170px];
 }
 
+/* Promo title and description semantic classes
+   These replicate the previous inline utility styles and provide
+   a single place to adjust appearance. */
+.promo-title {
+	/* font-black, italic, text-[48px], mb-4 */
+	font-size: 48px;
+	font-weight: 900;
+	font-style: italic;
+	margin-bottom: 32px;
+	/* approx mb-4 */
+	line-height: 1.05;
+	color: #FFFFFF;
+	/* container already sets white, but keep explicit */
+}
+
+.promo-description {
+	/* w-[355px], text-[18px], text-[#FAFAFA], mb-12 */
+	width: 355px;
+	font-size: 18px;
+	color: #FAFAFA;
+	margin-bottom: 48px;
+	/* approx mb-12 */
+}
+
+/* Promo badges: absolutely positioned inside .promo-right so each badge
+   can be manually moved by editing inline `left`/`top` and CSS variables
+   `--bx`/`--by` for fine offsets. */
+.promo-badges {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	/* allow clicks to pass through to underlying icons except for the badge images themselves */
+	z-index: 80;
+}
+
+.promo-badge {
+	position: absolute;
+	display: none;
+	/* shown when .badge--visible is added */
+	width: auto;
+	height: auto;
+	transform: translate(var(--bx, 0), var(--by, 0));
+	object-fit: contain;
+	pointer-events: auto;
+	/* badge images can receive pointer events */
+	z-index: 90;
+}
+
+.promo-badge.badge--visible {
+	display: block;
+}
+
+/* Shift the promo car slightly left when the 'pump' tab is active. */
+.promo-car--shifted {
+	margin-right: -160px;
+}
+
+/* Promo section: move car image to the right on medium+ screens
+	 Use a class selector so behaviour works without Tailwind processing. */
+@media (min-width: 768px) {
+	.promo-right>img.promo-car {
+		position: relative;
+		transform: translateX(320px) translateY(80px) !important;
+		transition: transform 320ms cubic-bezier(.2, .9, .3, 1) !important;
+		will-change: transform;
+		/* ensure the image remains visible when shifted */
+		margin-right: -70px;
+	}
+}
+
 .slide5pumpbadge {
 	@apply block relative left-30 bottom-20 mt-[170px];
 }
@@ -580,6 +669,47 @@ body {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
+
+		/* promo icons (small row above the promo car) */
+		.promo-icons {
+			display: none;
+			/* hidden on small screens */
+		}
+
+		@media (min-width: 768px) {
+			.promo-icons {
+				display: flex;
+				gap: 12px;
+				align-items: center;
+				position: absolute;
+				right: 140px;
+				/* place above the car area; tweak if needed */
+				top: 8%;
+				z-index: 30;
+			}
+
+			.promo-icons .promo-icon {
+				display: block;
+				object-fit: contain;
+			}
+
+			/* explicit pixel sizes to match request */
+			.promo-icons .promo-icon[width="40"][height="40"] {
+				width: 40px;
+				height: 40px;
+			}
+
+			.promo-icons .promo-icon[width="38"][height="44"] {
+				width: 38px;
+				height: 44px;
+			}
+
+			.promo-icons .promo-icon[width="43"][height="43"] {
+				width: 43px;
+				height: 43px;
+			}
+		}
+
 		/* align content to bottom of column */
 		margin-bottom: 50px;
 		/* requested bottom margin */
@@ -600,6 +730,32 @@ body {
 	position: relative;
 	overflow: visible;
 	margin-top: 140px;
+}
+
+/* Ensure promo icons are hidden on small screens but visible on md+.
+	 Placed at end to override any accidental nested media rules earlier. */
+.promo-icons {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	.promo-icons {
+		display: flex !important;
+		gap: 35px;
+		/* increased gap between icons */
+		align-items: center;
+		position: absolute;
+		right: -300px;
+		/* moved icons more to the left */
+		top: 8%;
+		z-index: 60;
+	}
+
+	.promo-icons .promo-icon {
+		display: block;
+		object-fit: contain;
+	}
+
 }
 
 .download-section .download-inner {
@@ -1005,7 +1161,8 @@ body {
 
 /* shift the feature cards slightly to the left on wider screens */
 .features-left {
-	transform: translateX(100px);
+	/* reduce desktop horizontal nudge to avoid overlap with right column */
+	transform: translateX(40px);
 }
 
 @media (max-width: 900px) {
@@ -1396,6 +1553,7 @@ body {
 }
 
 @media (max-width: 800px) {
+
 	.showcase-prev,
 	.showcase-next {
 		width: 40px;
@@ -1453,5 +1611,34 @@ body {
 }
 
 @media (max-width: 768px) {
-	.map-car { display: none; }
+	.map-car {
+		display: none;
+	}
+}
+
+/* Promo icons: default (grayscale) and active state */
+.promo-icons {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.promo-icon {
+	cursor: pointer;
+	transition: transform 140ms ease, opacity 140ms ease, filter 140ms ease;
+	filter: grayscale(100%);
+	opacity: 0.85;
+}
+
+.promo-icon[aria-pressed="true"],
+.promo-icon.active {
+	filter: none;
+	opacity: 1;
+	transform: translateY(-6px);
+}
+
+/* ensure promo icons are clickable on small screens but visually shown mainly on md+ via existing layout rules */
+.promo-icons .promo-icon:focus {
+	outline: 2px solid rgba(255, 255, 255, 0.15);
+	outline-offset: 4px;
 }
