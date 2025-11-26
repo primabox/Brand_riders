@@ -64,6 +64,53 @@
 
   // Expose on window for debugging
   window.__heroCarousel = { setActive };
+
+  // --- Touch / swipe support for mobile: allow finger swipes to change slides ---
+  // Simple detection: record touchstart, compare to touchend, trigger next/prev on sufficient horizontal delta
+  (function attachSwipe() {
+    const swipeContainer = document.querySelector('.hero-slides') || track;
+    if (!swipeContainer) return;
+
+    let startX = 0;
+    let startY = 0;
+    let isTouching = false;
+
+    const THRESHOLD = 40; // px required to consider a swipe
+
+    swipeContainer.addEventListener('touchstart', function (e) {
+      if (!e.touches || e.touches.length === 0) return;
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      isTouching = true;
+    }, { passive: true });
+
+    swipeContainer.addEventListener('touchmove', function (e) {
+      // no-op; we don't perform live dragging to keep implementation simple and avoid scroll conflicts
+      // leave passive to true so the browser can optimize scrolling
+    }, { passive: true });
+
+    swipeContainer.addEventListener('touchend', function (e) {
+      if (!isTouching) return;
+      isTouching = false;
+      // Touchend doesn't provide coordinates in the same way; use changedTouches
+      const t = (e.changedTouches && e.changedTouches[0]) || null;
+      if (!t) return;
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      // Only consider mostly-horizontal gestures
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > THRESHOLD) {
+        if (dx < 0) {
+          // swipe left -> next
+          setActive(current + 1);
+        } else {
+          // swipe right -> prev
+          setActive(current - 1);
+        }
+      }
+    }, { passive: true });
+  })();
 })();
 
 

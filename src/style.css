@@ -179,7 +179,8 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 @media (max-width: 480px) {
 	.slide-inner {
 		flex-direction: column;
-		align-items: center;
+		/* align the left column to the start so text and icons sit flush left like the reference */
+		align-items: flex-start;
 		gap: 12px;
 		padding-left: 12px;
 		padding-right: 12px;
@@ -187,8 +188,11 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 	.hero-left {
 		width: 100% !important;
-		text-align: center;
+		/* left-align text on mobile to match the provided screenshot */
+		text-align: left;
 		padding-top: 8px;
+		/* add a small left padding to give breathing room from the screen edge */
+		padding-left: 8px;
 	}
 
 	.hero-right {
@@ -199,15 +203,15 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 	}
 
 	.hero-left .hero-title {
-		font-size: 56px !important;
+		font-size: 42px !important;
 		line-height: 1.02 !important;
 		letter-spacing: 0 !important;
 	}
 
 	.hero-line { gap: 8px !important; }
 
-	/* reduce icon sizes on mobile to keep lines compact */
-	.hero-icon { height: 28px !important; width: auto !important; margin: 0 6px !important; }
+	/* keep original icon intrinsic sizes on mobile; only adjust spacing so they remain inline with text */
+	.hero-icon { margin: 0 6px !important; }
 
 	/* CTA sizing on mobile */
 	.hero-link--pill {
@@ -247,9 +251,15 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 	/* Make the large hero title lines tighter and bold like the reference */
 	.hero-left .hero-title span {
-		display: block;
+		/* keep the icon and the text inline and vertically centered like desktop */
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 10px !important;
 		line-height: 0.95 !important;
 	}
+
+	/* On mobile keep icon widths/heights unchanged (use intrinsic sizes defined above);
+	   only ensure inline alignment and a small gap which we set on .hero-left .hero-title span */
 }
 
 .hero-bg::before {
