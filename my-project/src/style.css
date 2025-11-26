@@ -128,6 +128,58 @@ body {
 	z-index: 10;
 }
 
+/* Decorative gradient behind the Questions section implemented as a background pseudo-element
+   This keeps the DOM clean and ensures the gradient behaves as a background. */
+.questions-section {
+	position: relative;
+	overflow: visible;
+}
+
+/* Place the decorative gradient on the centered inner wrapper so it can be aligned
+   exactly to the right edge of the content area. */
+.questions-section > .mx-auto {
+	position: relative;
+}
+.questions-section > .mx-auto::before {
+	content: "";
+	position: absolute;
+	/* Move the decorative block so its right edge aligns with the viewport right edge.
+	   The centered container has a max-width of 1350px; shifting by half the leftover
+	   viewport space pushes the pseudo-element flush to the screen's right edge. */
+	right: calc((100vw - 1350px) / 2 * -1);
+	top: 32px;
+	width: 1005px;
+	height: 735px;
+	border-radius: 24px;
+	z-index: 0;
+	background: linear-gradient(90deg, #C40228 0%, #ED3D1A 100%);
+}
+
+/* Hide or simplify the decorative block on narrower viewports to avoid overlap */
+@media (max-width: 1400px) {
+	.questions-section > .mx-auto::before {
+		display: none;
+	}
+}
+
+/* Ensure content inside the inner wrapper renders above the pseudo background */
+.questions-section > .mx-auto > * {
+	position: relative;
+	z-index: 10;
+}
+
+/* Move the accordion slightly up to reduce the visual gap under the heading */
+.questions-section .accordion {
+	margin-top: -24px;
+}
+
+/* On narrow viewports restore normal flow so layout doesn't overlap */
+@media (max-width: 1280px) {
+	.questions-section .accordion {
+		margin-top: 0;
+	}
+}
+
 .hero-carousel {
 	@apply relative;
 }
@@ -396,6 +448,84 @@ body {
 /* slide5 specific badge classes (mirror existing hero image utilities) */
 .slide5shieldbadge {
 	@apply block relative right-0 bottom-0 mt-[170px];
+}
+
+/* Questions / Accordion styles (appended) */
+.accordion { display: block; }
+.shadow-accordion { box-shadow: 0 10px 30px rgba(16,16,16,0.06); }
+.accordion-item-wrapper { cursor: pointer; transition: max-height 260ms ease, box-shadow 160ms ease, transform 160ms ease; will-change: max-height; background-clip: padding-box; border-radius: 44px; overflow: hidden; }
+.accordion-item-wrapper:focus { outline: none; outline-offset: 0; }
+.accordion-item-wrapper.open { transform: translateY(-2px); }
+.accordion-icon { transition: transform 200ms ease; }
+.accordion-item-wrapper[aria-expanded="true"] .accordion-icon { transform: rotate(180deg); }
+
+/* The wrapper will expand in height to reveal body content; animate via max-height */
+.accordion-item-wrapper { max-height: 88px; }
+.accordion-header { height: 88px; }
+.accordion-item-wrapper.expanded { /* will be set via JS to measured height */ }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 260ms ease, opacity 200ms ease; opacity: 0; }
+.accordion-body.open { opacity: 1; }
+
+@media (max-width: 768px) {
+	.accordion { width: 100%; }
+	.accordion-item-wrapper { border-radius: 36px; }
+	.accordion-header { height: 72px; }
+}
+
+
+/* Speech bubble styling for review cards */
+.speech-bubble {
+	position: relative;
+}
+
+.speech-bubble::after {
+	content: "";
+	position: absolute;
+	/* slightly larger tail and moved a bit up (closer to the card) */
+	bottom: -24px;
+	left: 4px;
+	width: 0;
+	height: 0;
+	border-left: 34px solid transparent;
+	border-right: 34px solid transparent;
+	border-top: 34px solid #ffffff; /* same as card background */
+	/* no shadow for the speech-bubble tail */
+	filter: none;
+}
+
+/* Right-aligned tail variant for right-column review cards */
+.speech-bubble--right::after {
+	left: auto;
+	right: 4px;
+}
+
+/* Per-card tail placement helpers */
+.speech-tail-left::after {
+	left: 4px !important;
+	right: auto !important;
+}
+
+.speech-tail-right::after {
+	right: 4px !important;
+	left: auto !important;
+}
+
+/* Slightly smaller tail on small screens so it doesn't overflow */
+@media (max-width: 768px) {
+	.speech-bubble::after,
+	.speech-bubble--right::after {
+		/* slightly larger on small screens but raised a bit */
+		bottom: -14px;
+		border-left-width: 22px;
+		border-right-width: 22px;
+		border-top-width: 22px;
+		left: 4px;
+		right: auto;
+	}
+	.speech-bubble--right::after {
+		left: auto;
+		right: 4px;
+	}
 }
 
 /* Promo title and description semantic classes

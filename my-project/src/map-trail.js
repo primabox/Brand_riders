@@ -34,7 +34,7 @@ if (!section) {
     let svgRect = svg.getBoundingClientRect();
     let needsUpdate = true;
     let latestScrollY = window.scrollY;
-    const DEBUG = true; // set to false to disable visual debug
+    const DEBUG = false; // set to false to disable visual debug
     let debugCircle = null;
     let lastLog = 0;
 

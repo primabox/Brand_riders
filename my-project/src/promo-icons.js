@@ -8,6 +8,9 @@
 
 const icons = Array.from(document.querySelectorAll('.promo-icon'));
 const promoCar = document.getElementById('promoCar');
+// promo logo element (left side) and its original src so we can swap to ORLEN
+const promoLogoImg = document.querySelector('.promo-logo img');
+const originalPromoLogoSrc = promoLogoImg ? promoLogoImg.src : null;
 
 // Map preload tab keys to badge element IDs
 const badgeMap = {
@@ -103,10 +106,33 @@ if (!promoCar || icons.length === 0) {
             }
         }
 
+            // Override title/description for database tab (car4)
+            if (tabKey === 'car4' && promoTitleNode && promoDescNode) {
+                promoTitleNode.innerHTML = 'Možnosť platenej <br> inzercie na Vašom <br> aute';
+                promoDescNode.innerHTML = 'Získajte možnosť zárobku až 300 EUR mesačne. Navrhovanú kampaň schvaľuje majiteľ vozidla.';
+            }
+
         // Swap promo car src
         promoCar.src = targetImg.src;
         // Mark current active tab on the promoCar element so the state is visible in DOM
         promoCar.setAttribute('data-tab', tabKey);
+
+        // Promo logo behavior:
+        // - carPump: show ORLEN logo
+        // - carClean or car4: hide the promo logo entirely
+        // - otherwise: restore original logo and visibility
+        if (promoLogoImg) {
+            const key = tabKey ? tabKey.toLowerCase() : '';
+            if (key === 'carpump') {
+                promoLogoImg.src = 'img/logos/orlen.png';
+                promoLogoImg.style.display = '';
+            } else if (key === 'carclean' || key === 'car4') {
+                promoLogoImg.style.display = 'none';
+            } else if (originalPromoLogoSrc) {
+                promoLogoImg.src = originalPromoLogoSrc;
+                promoLogoImg.style.display = '';
+            }
+        }
 
         // If the active tab is `carPump`, add a CSS class that shifts the promo car;
         // otherwise remove that class.
