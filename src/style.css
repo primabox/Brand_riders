@@ -244,6 +244,34 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 	.hero-badge__text {
 		font-size: 12px !important;
+	@media (max-width: 480px) {
+		.hero-left .hero-line img.hero-icon,
+		.hero-left .hero-line .hero-icon,
+		.hero-icon-sidecar,
+		.hero-icon-sidecar-second,
+		.hero-icon-pig,
+		.hero-icon-money,
+		.hero-icon-money-second,
+		.hero-icon-carfront,
+		.hero-icon-carfront-second,
+		.hero-icon-persowave,
+		.hero-icon-mobilecheck,
+		.hero-icon-shield,
+		.hero-icon-gas-pump,
+		.hero-icon-tire,
+		.hero-icon-wrench,
+		.hero-icon-nocrash,
+		.hero-icon-shine {
+			height: 14px !important;
+			width: auto !important;
+			margin: 0 2px !important;
+			display: inline-block !important;
+			vertical-align: middle !important;
+		}
+
+		/* ensure the inline-flex gap doesn't add excessive space on mobile */
+		.hero-line { gap: 6px !important; }
+	}
 		line-height: 1 !important;
 		transform: rotate(8deg) !important;
 		padding: 6px !important;
