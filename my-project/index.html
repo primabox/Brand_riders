@@ -12,12 +12,15 @@
 
 <body>
   <header class="gradient-red h-[100px] flex items-center rounded-bl-[50px] rounded-br-[50px] fixed w-full">
-    <img src="img/Logo.png" alt="Logo" class="h-[34px] w-[238px] ml-[250px]" />
+  <img src="img/Logo.png" alt="Logo" class="site-logo h-[34px] w-[238px] ml-[250px]" />
 
     <nav class="ml-auto flex items-center gap-6 mr-[225px]">
       <a href="#" class="header-link">JAZDITE S NAMI</a>
       <a href="#" class="header-link">INZERUJTE S NAMI</a>
-      <a href="#" class="header-link header-link--pill">PORTÁL VODIČA</a>
+      <a href="#" class="header-link header-link--pill">
+        <span class="pill-full">PORTÁL VODIČA</span>
+        <span class="pill-mobile">PORTÁL</span>
+      </a>
       <button class="header-link--icon" aria-label="Otevřít menu">
         <span class="hamburger-bar" aria-hidden="true"></span>
         <span class="hamburger-bar" aria-hidden="true"></span>
@@ -26,7 +29,7 @@
     </nav>
   </header>
 
-  <section class="hero-bg h-[1080px] flex items-center">
+  <section class="hero-bg h-[1080px] flex items-center overflow-y-hidden">
     <div class="hero-carousel w-full px-0">
       <div class="hero-slides">
         <div class="hero-slides-track">
@@ -254,7 +257,7 @@
   </section>
 
   <!-- Features / Benefits Section (replicated from screenshot) -->
-  <section class="features-section py-20 z-0">
+  <section class="features-section py-20 z-0 overflow-y-hidden">
     <div class="mx-auto  px-6 flex flex-col md:flex-row gap-36 items-stretch">
       <div class="features-left space-y-6">
         <div class="feature-card bg-white rounded-[18px] py-6 pr-6 pl-8 shadow-md">
@@ -329,7 +332,7 @@
 
 
   <!-- New white download section (background #FFFFFF) -->
-  <section class="download-section">
+  <section class="download-section overflow-y-hidden">
     <div class="pr-6 py-20 bg-white h-[746px] w-[1750px] rounded-tr-[50px] rounded-br-[50px]">
       <div class="download-inner flex flex-col md:flex-row items-start gap-8">
         <div class="download-left w-full md:w-1/2">
@@ -495,7 +498,7 @@
     </div>
   </section>
 
-  <section class="register  pt-64 pb-12">
+  <section class="register  pt-64 pb-12 overflow-y-hidden">
     <div class="flex justify-start pl-40">
       <div
         class="bg-gradient-red w-[1767px] h-[584px] rounded-tl-[50px] rounded-bl-[50px] flex items-center justify-start overflow-visible">
@@ -539,11 +542,11 @@
   </section>
 
 
-  <section class="showcase-carousel pt-48 pb-24">
+  <section class="showcase-carousel pt-48 pb-24 overflow-y-hidden">
     <div class="mx-auto max-w-[1550px] px-[72px] flex items-center justify-between">
       <!-- Left: text area styled like photo 2 -->
       <div class="showcase-text relative w-1/2 ">
-        <h3 class="uppercase text-[44px] font-black italic" style="margin-top:-160px; margin-bottom: 100px;">UKÁZKY
+        <h3 class="uppercase text-[44px] font-black italic showcase-title" style="margin-top:-160px; margin-bottom: 100px;">UKÁZKY
           REKLAMNÍCH KAMPANÍ</h3>
         <div class="showcase-logo mb-4">
           <img src="img/logos/canapuffLogo.png" alt="Canapuff logo" class="max-w-[330px] h-[90px]" />
@@ -606,7 +609,7 @@
     </div>
   </section>
 
-  <section class="map-trail-section py-20">
+  <section class="map-trail-section py-20 overflow-y-hidden">
     <div class="mx-auto max-w-[1450px] px-6">
       <div class="map-trail-bar-wrap ">
         <div class="map-trail-bar gradient-red w-[100px] h-[20px] rounded-full" aria-hidden="true"></div>
@@ -720,8 +723,8 @@
     </div>
   </section>
 
-  <section class="reviews-section mt-[250px] mb-[250px] py-20">
-    <div class="mx-auto max-w-[1350px] px-6">
+  <section class="reviews-section mt-[250px] mb-[250px] py-20 overflow-y-hidden">
+    <div class="mx-auto max-w-[1470px] px-6">
       <div class="map-trail-bar-wrap">
         <div class="map-trail-bar gradient-red w-[100px] h-[20px] rounded-full" aria-hidden="true"></div>
       </div>
@@ -769,7 +772,7 @@
         </div>
 
         <!-- Right: two stacked reviews with exact sizes -->
-        <div class="reviews-right flex flex-col gap-6 ml-auto">
+        <div class="reviews-right flex flex-col gap-[104px] ml-auto">
           <div class="review-card-right bg-white rounded-[18px] p-6  w-full md:w-[593px] md:h-[495px] relative speech-bubble speech-tail-right">
             <p class="text-[18px] text-[#1E1E1E] mb-6">„Keď som zistil, aké benefity komunita prináša, neváhal som a zaregistroval som sa. Využil som polep svojho auta, ktorý mi zarába, a ponuku výhodného autopoistenia. Ďalšie produkty sú už v procese, napr. zľavová karta na pohonné hmoty. Som veľmi potešený, že existujú zaujímavé služby, ktoré môže ktokoľvek využiť. Ďakujem celému tímu Brand Riders, ktorý vytvoril zaujímavé ponuky, ktoré mi maximálne pomáhajú. Veľmi ma mrzí, že na sociálnych sieťach kolujú nepravdivé informácie, že ide o klamlivú reklamu. Musím toto tvrdenie vyvrátiť a naopak spolupráca s Brand Riders je na výbornej ceste. Teším sa na ďalšie zaujímavé produkty.“</p>
             <div class="flex items-center gap-4 mt-auto">
@@ -798,21 +801,24 @@
     </div>
   </section>
 
-  <section class="questions-section py-20 relative">
-    <div class="mx-auto max-w-[1350px] px-6 relative z-10">
-      <!-- Gradient background is handled in CSS via a pseudo-element -->
-      <div class="map-trail-bar-wrap">
-        <div class="map-trail-bar gradient-red w-[100px] h-[20px] rounded-full" aria-hidden="true"></div>
+  <section class="questions-section py-20 relative overflow-y-hidden">
+    <div class="mx-auto max-w-[1470px] px-6 relative z-10">
+      <div class="questions-bg" aria-hidden="true">
+        <img src="img/questionCar.png" alt="Car on gradient" class="questions-bg__img" width="806" height="453" />
       </div>
-      <h2 class="text-[64px] font-black italic mb-8" style="color: #1E1E1E;">NAJČASTEJŠIE<br>OTÁZKY</h2>
+      <!-- Gradient background is handled in CSS via a pseudo-element -->
+      <div class="question-bar-wrap">
+        <div class="question-bar gradient-red w-[100px] h-[20px] rounded-full" aria-hidden="true"></div>
+      </div>
+      <h2 class="text-[64px] font-black italic mb-32" style="color: #1E1E1E;">NAJČASTEJŠIE<br>OTÁZKY</h2>
 
       <div class="flex flex-col items-center">
         <div class="accordion w-[1203px]"> 
           <!-- Accordion item 1 (collapsed by default) - answer lives inside the interactive item -->
-          <div class="accordion-block mb-4">
+          <div class="accordion-block mb-8">
             <div class="accordion-item-wrapper bg-white rounded-[44px] w-full overflow-hidden shadow-accordion" role="button" tabindex="0" aria-expanded="false">
-              <div class="accordion-header flex items-center justify-between px-8 h-[88px]">
-                <span class="text-[18px] text-[#1E1E1E]">Ako sa môžem stať Brand Riders vodičom?</span>
+              <div class="accordion-header flex items-center justify-between px-8">
+                <span class="text-[#1E1E1E]">Ako sa môžem stať Brand Riders vodičom?</span>
                 <svg class="accordion-icon w-6 h-6 text-[#1E1E1E]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
@@ -824,10 +830,10 @@
           </div>
 
           <!-- Accordion item 2 (collapsed by default) - answer lives inside the interactive item -->
-          <div class="accordion-block mb-4">
+          <div class="accordion-block mb-8">
             <div class="accordion-item-wrapper bg-white rounded-[44px] w-full overflow-hidden shadow-accordion" role="button" tabindex="0" aria-expanded="false">
-              <div class="accordion-header flex items-center justify-between px-8 h-[88px]">
-                <span class="text-[18px] text-[#1E1E1E]">Vyhovuje moje auto vašim požiadavkám?</span>
+              <div class="accordion-header flex items-center justify-between px-8">
+                <span class="text-[#1E1E1E]">Vyhovuje moje auto vašim požiadavkám?</span>
                 <svg class="accordion-icon w-6 h-6 text-[#1E1E1E]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
@@ -839,23 +845,116 @@
           </div>
 
           <!-- Accordion item 3 (collapsed by default) - answer lives inside the interactive item -->
-          <div class="accordion-block mb-4">
+          <div class="accordion-block mb-8">
             <div class="accordion-item-wrapper bg-white rounded-[44px] w-full overflow-hidden shadow-accordion" role="button" tabindex="0" aria-expanded="false">
-              <div class="accordion-header flex items-center justify-between px-8 h-[88px]">
-                <span class="text-[18px] text-[#1E1E1E]">Je registrácia nejako spoplatnená?</span>
+              <div class="accordion-header flex items-center justify-between px-8">
+                <span class=" text-[#1E1E1E]">Je registrácia nejako spoplatnená?</span>
                 <svg class="accordion-icon w-6 h-6 text-[#1E1E1E]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
-              <div class="accordion-body bg-white p-6 text-[16px] text-[#1E1E1E]">
+              <div class="accordion-body bg-white p-6">
                 Registrácia je zadarmo a k ničomu vás nezaväzuje. Naopak, môžete vďaka nej čerpať množstvo výhod, ktoré sú určené len pre komunitu Brand Riders.
               </div>
             </div>
           </div>
         </div>
+        <a href="#" class="questions-show-all">ZOBRAZIT VŠETKY</a>
       </div>
     </div>
   </section>
+
+  <section class="advertise-section py-36 mb-24">
+    <div class="mx-auto max-w-[1470px] px-6">
+      <div class="advertise-bar-wrap">
+        <div class="advertise-bar w-[100px] h-[20px] rounded-full" aria-hidden="true"></div>
+      </div>
+
+      <h2 class="advertise-title">REKLAMU NA <br>  VOZIDLÁCH VYUŽÍVAJÚ</h2>
+
+      <div class="adv-grid grid grid-cols-3">
+        <div class="adv-card bg-white rounded-[18px] p-6 relative overflow-visible hover:bg-[#6D2037] transition-colors duration-400">
+          <img src="img/logos/costacoffeLogo.png" alt="Costa Coffeet" class="adv-logo"/>
+          <img src="img/slides/costacoffeCar.png" alt="car" class="adv-car adv-car--1"/>
+        </div>
+
+        <div class="adv-card bg-white rounded-[18px] p-6 relative overflow-visible hover:bg-[#C70F2E] transition-colors duration-400">
+          <img src="img/logos/pizzaHut2.png" alt="Pizza Hut" class="adv-logo"/>
+          <img src="img/slides/pizzahutCar.png" alt="car" class="adv-car adv-car--2"/>
+        </div>
+
+        <div class="adv-card bg-white rounded-[18px] p-6 relative overflow-visible hover:bg-[#024DDF] transition-colors duration-400">
+          <img src="img/logos/ticketmasterLogo.png" alt="Ticketmaster" class="adv-logo"/>
+          <img src="img/slides/ticketmasterCar.png" alt="car" class="adv-car adv-car--3"/>
+        </div>
+
+        <div class="adv-card bg-white rounded-[18px] p-6 relative overflow-visible hover:bg-[#2D7DB9] transition-colors duration-400">
+          <img src="img/logos/bekoLogo.png" alt="Beko" class="adv-logo"/>
+          <img src="img/slides/bekoCar.png" alt="car" class="adv-car adv-car--4"/>
+        </div>
+
+        <div class="adv-card bg-white rounded-[18px] p-6 relative overflow-visible hover:bg-[#005091] transition-colors duration-400">
+          <img src="img/logos/cppLogo.png" alt="CPP" class="adv-logo"/>
+          <img src="img/slides/cppCar.png" alt="car" class="adv-car adv-car--5"/>
+        </div>
+
+        <div class="adv-card bg-white rounded-[18px] p-6 relative overflow-visible hover:bg-[#FEBA3A] transition-colors duration-400">
+          <img src="img/logos/ppLogo.png" alt="PP" class="adv-logo"/>
+          <img src="img/slides/ppCar.png" alt="car" class="adv-car adv-car--6"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner mx-auto">
+      <div class="footer-grid">
+        <div class="footer-col footer-col--brand">
+            <img src="img/footerLogo.png" alt="Brand Riders" class="footer-logo" />
+            <div class="footer-invite">Inzerujte s námi</div>
+            <div class="footer-sublogo"><img src="img/brandcarsLogo.png" alt="OK Riders" /></div>
+          </div>
+
+          <div class="footer-mid">
+              <div class="footer-col">
+                <ul class="footer-links">
+                  <li><a href="#">Benefity</a></li>
+                  <li><a href="#">Registrace</a></li>
+                  <li><a href="#">FAQ</a></li>
+                </ul>
+              </div>
+
+              <div class="footer-col">
+                <ul class="footer-links">
+                  <li><a href="#">Kariéra</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Kontakt</a></li>
+                </ul>
+              </div>
+
+              <div class="footer-col">
+                <ul class="footer-links">
+                  <li><a href="#" class="whitespace-nowrap">Slovník pojmů</a></li>
+                  <li><a href="#" class="whitespace-nowrap">Ochrana osobních údajů</a></li>
+                  <li><a href="#" class="whitespace-nowrap">Dokumenty ke stažení</a></li>
+                </ul>
+              </div>
+          </div>
+
+          <div class="footer-col footer-col--contact">
+            <div class="footer-social" aria-hidden="true">
+              <a href="#" aria-label="Instagram"><img src="img/logos/instagram.png" alt="Instagram" width="36" height="36"/></a>
+              <a href="#" aria-label="Facebook"><img src="img/logos/facebook.png" alt="Facebook" width="19" height="36"/></a>
+              <a href="#" aria-label="LinkedIn"><img src="img/logos/linkedin.png" alt="LinkedIn" width="36" height="36"/></a>
+            </div>
+            <div class="footer-address mt-6 mb-4">
+              © Ok Riders s.r.o., IČ: 23514736,<br> Jiráskovo náměstí 2684/2, <br> východní Předměstí <br> (Plzeň 2-Slovany), 326 00 Plzeň
+            </div>
+            <img src="img/okriderslogo.png" alt="OK Riders" class="footer-okriders-logo" />
+          </div>
+      </div>
+    </div>
+  </footer>
 
   <script type="module" src="src/showcase-carousel.js"></script>
   <script type="module" src="src/carousel.js"></script>

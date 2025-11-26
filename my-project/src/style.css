@@ -5,8 +5,23 @@ html,
 body {
 	font-family: 'Cresta', sans-serif;
 	background-color: #F2F2F2;
-	overflow-x: hidden;
+	overflow-x: hidden !important; 
 }
+
+/* Hide the visual vertical scrollbar but preserve scrolling behavior.
+   This keeps the UI clean while not disabling scroll interactions.
+   If you'd rather fully disable vertical scroll, replace with `overflow-y: hidden` on body. */
+html {
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE 10+ */
+}
+html::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+	background: transparent;
+}
+/* Also hide on body for some WebKit builds */
+body::-webkit-scrollbar { width: 0; height: 0; }
 
 .gradient-red {
 	@apply bg-gradient-to-r from-[#C40228] to-[#ED3D1A] z-50;
@@ -51,6 +66,10 @@ body {
 .header-link--pill {
 	@apply bg-[#0FC26C] h-[38px] text-white rounded-full transition duration-200 ease-in-out;
 }
+
+/* Default pill labels: show full label on desktop, hide mobile short label */
+.header-link--pill .pill-mobile { display: none; }
+.header-link--pill .pill-full { display: inline; }
 
 .hero-link--pill {
 	@apply bg-[#0FC26C] text-white font-black italic rounded-full inline-flex items-center justify-center cursor-pointer h-[38px] w-[218px] mt-20 text-[18px] transition duration-200 ease-in-out;
@@ -105,6 +124,134 @@ body {
 	overflow: visible;
 }
 
+/* Mobile header adjustments to match provided mobile reference (step 1) */
+@media (max-width: 480px) {
+	header.gradient-red {
+		height: 64px;
+		align-items: center;
+		padding-left: 12px;
+		padding-right: 12px;
+		/* smaller corner radius on mobile as requested */
+		border-bottom-left-radius: 28px !important;
+		border-bottom-right-radius: 28px !important;
+	}
+
+	/* logo: smaller and left-aligned */
+	.site-logo {
+		height: 28px !important;
+		width: auto !important;
+		/* nudge slightly more to the right on mobile for visual balance */
+		margin-left: 20px !important;
+	}
+
+	/* hide regular header links, keep the portal pill and the hamburger */
+	header nav a.header-link { display: none !important; }
+	header nav a.header-link.header-link--pill { display: inline-flex !important; }
+	header nav .header-link--icon { display: inline-flex !important; }
+
+	/* style the pill on mobile: 78x24, small text */
+	header nav a.header-link.header-link--pill {
+		height: 24px !important;
+		min-height: 24px !important;
+		width: 78px !important;
+		padding: 0 8px !important;
+		font-size: 12px !important;
+		align-items: center !important;
+		justify-content: center !important;
+		text-align: center !important;
+	}
+
+	/* show shortened label and hide full label on mobile */
+	.header-link--pill .pill-full { display: none !important; }
+	.header-link--pill .pill-mobile { display: inline !important; }
+
+	header nav { margin-right: 8px !important; gap: 8px !important; }
+}
+
+/* Make the whole page background white on small screens as requested */
+@media (max-width: 480px) {
+	html, body {
+		background-color: #FFFFFF !important;
+	}
+}
+
+/* Mobile: Hero / Carousel adjustments (step 2) */
+@media (max-width: 480px) {
+	.slide-inner {
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	.hero-left {
+		width: 100% !important;
+		text-align: center;
+		padding-top: 8px;
+	}
+
+	.hero-right {
+		width: 100% !important;
+		display: flex;
+		justify-content: center;
+		margin-top: -10px;
+	}
+
+	.hero-left .hero-title {
+		font-size: 56px !important;
+		line-height: 1.02 !important;
+		letter-spacing: 0 !important;
+	}
+
+	.hero-line { gap: 8px !important; }
+
+	/* reduce icon sizes on mobile to keep lines compact */
+	.hero-icon { height: 28px !important; width: auto !important; margin: 0 6px !important; }
+
+	/* CTA sizing on mobile */
+	.hero-link--pill {
+		width: 180px !important;
+		height: 40px !important;
+		font-size: 16px !important;
+		padding: 0 14px !important;
+	}
+
+	/* Scale down the hero car and allow it to peek below the section */
+	.hero-right .hero-car {
+		max-width: 360px !important;
+		width: 100% !important;
+		height: auto !important;
+		transform: translateY(-12px) !important;
+	}
+
+	/* ensure pagination dots remain visible and centered */
+	.hero-controls { bottom: 36px !important; }
+}
+
+/* Further mobile tweaks for hero badge and spacing to match reference */
+@media (max-width: 480px) {
+	.hero-badge {
+		width: 96px !important;
+		height: 96px !important;
+		right: 18px !important;
+		top: 8px !important;
+	}
+
+	.hero-badge__text {
+		font-size: 12px !important;
+		line-height: 1 !important;
+		transform: rotate(8deg) !important;
+		padding: 6px !important;
+	}
+
+	/* Make the large hero title lines tighter and bold like the reference */
+	.hero-left .hero-title span {
+		display: block;
+		line-height: 0.95 !important;
+	}
+}
+
 .hero-bg::before {
 	content: '';
 	position: absolute;
@@ -128,56 +275,174 @@ body {
 	z-index: 10;
 }
 
-/* Decorative gradient behind the Questions section implemented as a background pseudo-element
-   This keeps the DOM clean and ensures the gradient behaves as a background. */
+
 .questions-section {
 	position: relative;
 	overflow: visible;
 }
 
-/* Place the decorative gradient on the centered inner wrapper so it can be aligned
-   exactly to the right edge of the content area. */
+
+.questions-section h2 {
+	margin-top: -50px;
+	line-height: 0.95;
+}
+
+
+h2 {
+	line-height: 0.95;
+}
+
+
+.showcase-title {
+	line-height: 1.02;
+}
+
+
 .questions-section > .mx-auto {
 	position: relative;
 }
-.questions-section > .mx-auto::before {
-	content: "";
+
+
+.questions-section .questions-bg {
 	position: absolute;
-	/* Move the decorative block so its right edge aligns with the viewport right edge.
-	   The centered container has a max-width of 1350px; shifting by half the leftover
-	   viewport space pushes the pseudo-element flush to the screen's right edge. */
 	right: calc((100vw - 1350px) / 2 * -1);
 	top: 32px;
-	width: 1005px;
+	width: 1030px;
 	height: 735px;
 	border-radius: 24px;
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
 	z-index: 0;
+	overflow: visible;
+	pointer-events: none;
 	background: linear-gradient(90deg, #C40228 0%, #ED3D1A 100%);
 }
 
-/* Hide or simplify the decorative block on narrower viewports to avoid overlap */
+/* Hide decorative background on smaller viewports to avoid overlap */
 @media (max-width: 1400px) {
-	.questions-section > .mx-auto::before {
+	.questions-section .questions-bg {
 		display: none;
 	}
 }
 
-/* Ensure content inside the inner wrapper renders above the pseudo background */
-.questions-section > .mx-auto > * {
+/* Ensure content inside the inner wrapper renders above the questions-bg element; exclude the bg itself */
+.questions-section > .mx-auto > *:not(.questions-bg) {
 	position: relative;
 	z-index: 10;
+}
+
+/* Image inside the questions background (the car) */
+.questions-bg__img {
+	width: 806px;
+	height: 453px;
+	max-width: none;
+	max-height: none;
+	object-fit: cover;
+	display: block;
+	margin-right: 100px;
+	margin-left: 50px;
+	transform: translateY(-250px);
+	will-change: transform;
 }
 
 /* Move the accordion slightly up to reduce the visual gap under the heading */
 .questions-section .accordion {
 	margin-top: -24px;
+	/* shift accordion left to better align with content */
+	margin-left: -200px;
+}
+
+/* "Zobraziť všetky" control under the questions accordion */
+.questions-show-all {
+	display: block;
+	width: 1203px; /* match the accordion width */
+	margin-top: 64px;
+	margin-left: -200px; /* match accordion left shift */
+	color: #1E1E1E;
+	font-weight: 900;
+	font-style: italic;
+	font-size: 20px;
+	text-decoration: none;
+	cursor: pointer;
+	text-align: left;
+}
+.questions-show-all:hover {
+	opacity: 0.9;
 }
 
 /* On narrow viewports restore normal flow so layout doesn't overlap */
 @media (max-width: 1280px) {
 	.questions-section .accordion {
 		margin-top: 0;
+		margin-left: 0;
 	}
+	.questions-show-all {
+		margin-left: 0;
+		width: auto;
+		text-align: center;
+	}
+}
+
+@media (max-width: 900px) {
+    /* Restore natural flow on small screens so title doesn't overlap */
+    .questions-section h2 {
+        margin-top: 0;
+    }
+}
+
+/* Move the small decorative bar above the questions heading */
+.map-trail-bar-wrap {
+	/* pull the bar upward so it sits visually above the heading without affecting layout flow */
+	transform: translateY(-10px);
+	margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+	.map-trail-bar-wrap {
+		transform: translateY(0);
+		margin-bottom: 12px;
+	}
+}
+
+/* Same behaviour for question headings: separate utility class so it can be used independently */
+.question-bar-wrap {
+    /* pull the bar upward so it sits visually above the heading without affecting layout flow */
+    transform: translateY(-60px);
+    margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+    .question-bar-wrap {
+        transform: translateY(0);
+        margin-bottom: 12px;
+    }
+}
+
+/* Decorative bar for the Advertise section (same behavior as other small header bars) */
+.advertise-bar-wrap {
+	transform: translateY(-10px);
+	margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+	.advertise-bar-wrap {
+		transform: translateY(0);
+		margin-bottom: 12px;
+	}
+}
+
+/* Visual style for the small pill bar — color only, width/height set via utility classes in HTML */
+.advertise-bar {
+	/* use the same horizontal red brand gradient as the header */
+	background: linear-gradient(90deg, #C40228 0%, #ED3D1A 100%);
+}
+
+
+
+/* Decorative bar variant for the Questions section — identical to .map-trail-bar */
+.question-bar {
+    background: #0FC26C;
+    background-image: none;
 }
 
 .hero-carousel {
@@ -453,23 +718,59 @@ body {
 /* Questions / Accordion styles (appended) */
 .accordion { display: block; }
 .shadow-accordion { box-shadow: 0 10px 30px rgba(16,16,16,0.06); }
-.accordion-item-wrapper { cursor: pointer; transition: max-height 260ms ease, box-shadow 160ms ease, transform 160ms ease; will-change: max-height; background-clip: padding-box; border-radius: 44px; overflow: hidden; }
+.accordion-item-wrapper { cursor: pointer; transition: none; will-change: max-height; background-clip: padding-box; border-radius: 44px; overflow: hidden; }
 .accordion-item-wrapper:focus { outline: none; outline-offset: 0; }
 .accordion-item-wrapper.open { transform: translateY(-2px); }
-.accordion-icon { transition: transform 200ms ease; }
+.accordion-icon { transition: none; }
 .accordion-item-wrapper[aria-expanded="true"] .accordion-icon { transform: rotate(180deg); }
 
-/* The wrapper will expand in height to reveal body content; animate via max-height */
-.accordion-item-wrapper { max-height: 88px; }
-.accordion-header { height: 88px; }
+/* Disable pointer interactions while an item is animating to avoid conflicting toggles */
+.accordion-item-wrapper.animating { pointer-events: none; }
+
+/* The wrapper will expand in height to reveal body content; animate via max-height.
+	For best results the JS sets an explicit measured `max-height` when opening.
+	This implementation relies on JS to toggle `max-height` for the open/close
+	animation. If JS is not available you will need a CSS-only fallback (checkbox
+	or :target technique) for expandable behaviour. */
+.accordion-item-wrapper { max-height: none; transition: transform 220ms ease, box-shadow 220ms ease; }
+.accordion-header { min-height: 88px; }
 .accordion-item-wrapper.expanded { /* will be set via JS to measured height */ }
-.accordion-body { max-height: 0; overflow: hidden; transition: max-height 260ms ease, opacity 200ms ease; opacity: 0; }
-.accordion-body.open { opacity: 1; }
+.accordion-body {
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	/* Slower, smooth open/close for both directions */
+	transition: max-height 700ms cubic-bezier(.2,.9,.3,1), opacity 600ms ease, padding 600ms cubic-bezier(.2,.9,.3,1);
+}
+.accordion-body.open {
+	opacity: 1;
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+/* Accordion body typography per spec: 24px, color #1E1E1E, weight 400 */
+.accordion-item-wrapper .accordion-body,
+.accordion-body {
+	font-size: 24px;
+	color: #1E1E1E;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+/* Accordion header typography: 24px, medium (500) */
+.accordion-item-wrapper .accordion-header,
+.accordion-header {
+	font-size: 24px;
+	font-weight: 500;
+	color: #1E1E1E;
+}
 
 @media (max-width: 768px) {
 	.accordion { width: 100%; }
 	.accordion-item-wrapper { border-radius: 36px; }
-	.accordion-header { height: 72px; }
+	.accordion-header { min-height: 72px; }
 }
 
 
@@ -860,6 +1161,88 @@ body {
 	position: relative;
 	overflow: visible;
 	margin-top: 140px;
+}
+
+/* Advertise / client logos with car preview section */
+.advertise-section {
+	position: relative;
+	overflow: visible;
+	background: transparent;
+	margin-top: 120px;
+}
+.advertise-title {
+	font-weight: 900;
+	font-style: italic;
+	font-size: 64px;
+	color: #1E1E1E;
+	text-transform: uppercase;
+	margin-bottom: 140px;
+	line-height: 1.02;
+}
+.adv-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	column-gap: var(--adv-gap-x, 150px) !important;
+	row-gap: var(--adv-gap-y, 100px) !important;
+	justify-content: center;
+}
+.adv-card {
+	width: 408px;
+	height: 259px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	overflow: visible;
+	padding: 16px;
+	box-sizing: border-box;
+	border-radius: 50px;
+}
+.adv-logo {
+	position: absolute;
+	top: 30px;
+	left: 40px;
+	display: block;
+	z-index: 20;
+	object-fit: contain;
+	transition: filter 220ms ease, opacity 220ms ease;
+}
+/* On card hover, only the logo image becomes white (using filters). */
+.adv-card:hover .adv-logo {
+	/* convert colored logo to white while preserving transparency */
+	filter: grayscale(100%) brightness(0) invert(1);
+	opacity: 0.98;
+}
+.adv-car {
+		position: absolute;
+
+		left: var(--adv-car-left, auto);
+		top: var(--adv-car-top, auto);
+		right: var(--adv-car-right, -140px);
+		bottom: var(--adv-car-bottom, -65px);
+		z-index: 5;
+		pointer-events: none;
+		transform: translateZ(0);
+}
+
+
+	.adv-car--1 { --adv-car-right: -140px;  --adv-car-bottom: -65px;  --adv-car-left: auto;  --adv-car-top: auto; }
+	.adv-car--2 { --adv-car-right: -100px;  --adv-car-bottom: -65px;   --adv-car-left: auto;  --adv-car-top: auto; }
+	.adv-car--3 { --adv-car-right: -80px;  --adv-car-bottom: -65px;  --adv-car-left: auto;  --adv-car-top: auto; }
+	.adv-car--4 { --adv-car-right: -140px;  --adv-car-bottom: -65px;   --adv-car-left: auto; --adv-car-top: auto; }
+	.adv-car--5 { --adv-car-right: -100px;  --adv-car-bottom: -65px;       --adv-car-left: auto; --adv-car-top: auto; }
+	.adv-car--6 { --adv-car-right: -90px;  --adv-car-bottom: -65px;       --adv-car-left: auto;  --adv-car-top: auto; }
+
+@media (max-width: 1024px) {
+	.adv-grid { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
+	.adv-car { width: 200px; right: 10px; }
+}
+
+@media (max-width: 600px) {
+	.adv-grid { grid-template-columns: 1fr; }
+	.advertise-title { text-align: center; }
+	.adv-card { width: 100%; max-width: 408px; height: 259px; }
+	.adv-car { width: 140px; right: 8px; bottom: -8px; }
 }
 
 /* Ensure promo icons are hidden on small screens but visible on md+.
@@ -1771,4 +2154,137 @@ body {
 .promo-icons .promo-icon:focus {
 	outline: 2px solid rgba(255, 255, 255, 0.15);
 	outline-offset: 4px;
+}
+
+/* Site footer */
+.site-footer {
+	height: 746px;
+	background: #1E1E1E;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	overflow: hidden;
+	color: #FFFFFF;
+	/* center inner content vertically */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.site-footer .footer-inner {
+	/* allow easy configuration of the inner container width via CSS variable */
+	--footer-inner-max: 1470px;
+	max-width: var(--footer-inner-max);
+	width: 100%;
+	margin: 0 auto;
+	/* remove large top/bottom padding so the inner block can be vertically centered
+	   horizontal padding retained */
+}
+.footer-grid {
+	display: flex;
+	gap: 120px;
+	/* center columns vertically within the footer */
+	align-items: center;
+}
+/* wrapper for the three middle columns so they sit closer together */
+.footer-mid {
+    display: flex;
+    gap: 75px; /* tighter gap between the three lists */
+    align-items: flex-start;
+}
+.footer-col {
+	flex: 1 1 0;
+	min-width: 75px;
+}
+.footer-col--brand {
+	margin-top: 50px;
+	flex: 0 0 280px;
+}
+.footer-col--contact {
+	/* push the contact column to the far right */
+	margin-left: auto;
+	/* keep it from shrinking too small if space is tight */
+	flex: 0 0 auto;
+	/* nudge the contact column to the right for visual alignment */
+	transform: translateX(60px);
+	transition: transform 220ms ease;
+	margin-top: 40px;
+	/* layout as column so icons can be right-aligned while address is left-aligned */
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.footer-logo {
+	display: block;
+}
+.footer-sublogo img {display:block; margin-top:18px; }
+.footer-invite {
+	font-size: 20px;
+	font-weight: 500;
+	color: #FAFAFA;
+	margin-top: 48px;
+	margin-bottom: 6px;
+}
+.footer-col h4 {
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 12px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+.footer-links { list-style:none; padding:0; margin:0; }
+.footer-links li { margin-bottom: 35px; }
+.footer-links a {
+	color: #FAFAFA;
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 1.25;
+}
+.footer-links a:hover { color: #FFFFFF; opacity: 0.95; }
+.footer-social { display:flex; gap:40px; align-items:center; margin-bottom: 12px; justify-content: flex-start; }
+.footer-social a { color: #FFFFFF; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background: rgba(255,255,255,0.06); text-decoration:none; }
+
+.footer-social a:hover { background: rgba(255,255,255,0.12); }
+
+/* ensure social images fill the anchor box and keep correct aspect */
+.footer-social a img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/* individual icon sizes */
+.footer-social a:nth-child(1) { width: 36px; height: 36px; }
+.footer-social a:nth-child(1) i { font-size: 16px; line-height: 1; }
+.footer-social a:nth-child(2) { width: 19px; height: 36px; }
+.footer-social a:nth-child(2) i { font-size: 12px; line-height: 1; }
+.footer-social a:nth-child(3) { width: 36px; height: 36px; }
+.footer-social a:nth-child(3) i { font-size: 16px; line-height: 1; }
+.footer-address {
+	font-size: 16px;
+	font-weight: 500;
+	color: #A6A6A6;
+	line-height: 1.4;
+	/* address text should be left-aligned inside the contact column */
+	text-align: left;
+	/* keep address from stretching full width when right-aligned icons are present */
+	max-width: 320px;
+}
+
+/* OK Riders logo placed under the address; keep left-aligned inside the right column */
+.footer-okriders-logo {
+    display: block;
+    align-self: flex-start;
+    margin-top: 16px;
+}
+
+@media (max-width: 980px) {
+	.footer-grid { flex-direction: column; gap: 28px; }
+	.footer-col--brand { flex: none; }
+	/* on small screens allow regular flow and restore vertical padding */
+	.site-footer { height: auto; padding-top: 48px; padding-bottom: 48px; }
+	/* reset contact spacing on stacked layout */
+	.footer-col--contact { margin-left: 0; transform: none; }
+	/* stacked layout: make the middle wrapper stack its children too */
+	.footer-mid { display: flex; flex-direction: column; gap: 12px; }
 }

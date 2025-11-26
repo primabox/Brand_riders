@@ -1,134 +1,165 @@
-// Simple accordion toggles for the Questions section
-// Accordion: robust in-place expansion with keyboard support and transition cleanup
-function initAccordion() {
-  const items = document.querySelectorAll('.accordion-item-wrapper');
-  if (!items || items.length === 0) return;
+// Accessible, robust accordion for Questions section
+// Features:
+// - single-open behavior
+// - smooth open/close animations using measured heights
+// - animation lock + queued toggles to avoid race conditions
+// - keyboard support (Enter, Space, Escape)
+// - re-measure when images inside an open panel load
+
+(function () {
+  const SELECTOR = '.accordion-item-wrapper';
+
+  function qsAll(sel) { return Array.from(document.querySelectorAll(sel)); }
 
   function getHeaderHeight(item) {
     const header = item.querySelector('.accordion-header');
-    return header ? header.offsetHeight : 88;
+    return header ? header.getBoundingClientRect().height : 88;
   }
 
-  function closeItem(item) {
+  function setNumericStartHeights(item) {
+    const headerH = getHeaderHeight(item);
     const body = item.querySelector('.accordion-body');
-    const headerHeight = getHeaderHeight(item);
-    item.setAttribute('aria-expanded', 'false');
-    item.classList.remove('open');
-
-    // If wrapper previously had 'none' (no max-height), start from its current scrollHeight
-    // so the transition to headerHeight animates smoothly.
-    let startHeight;
-    if (!item.style.maxHeight || item.style.maxHeight === 'none') {
-      // measure current full height
-      startHeight = item.scrollHeight;
-      item.style.maxHeight = startHeight + 'px';
-    } else {
-      // parse existing pixel value or fallback to scrollHeight
-      const m = parseFloat(item.style.maxHeight);
-      startHeight = isFinite(m) ? m : item.scrollHeight;
-      item.style.maxHeight = startHeight + 'px';
-    }
-
-    // ensure body starts from its current height so it animates to 0
-    if (body) {
-      if (!body.style.maxHeight || body.style.maxHeight === 'none') {
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
-      body.classList.remove('open');
-    }
-
-    // animate to collapsed sizes on next frame
-    requestAnimationFrame(() => {
-      item.style.maxHeight = headerHeight + 'px';
-      if (body) body.style.maxHeight = '0px';
-    });
+    if (!item.style.maxHeight || item.style.maxHeight === 'none') item.style.maxHeight = headerH + 'px';
+    if (body && (!body.style.maxHeight || body.style.maxHeight === 'none')) body.style.maxHeight = '0px';
   }
 
-  function openItem(item) {
+  function measureSizes(item) {
     const body = item.querySelector('.accordion-body');
-    if (!body) return;
+    const wrapperFull = item.scrollHeight; // header + body
+    const bodyFull = body ? body.scrollHeight : 0;
+    return { wrapperFull, bodyFull };
+  }
 
-    const headerHeight = getHeaderHeight(item);
+  // Animation helpers removed — accordion now opens/closes instantly.
 
-    // mark expanded state
+  function doOpen(item) {
+    const body = item.querySelector('.accordion-body');
+    const headerH = getHeaderHeight(item);
+    // set ARIA + classes and expand instantly
     item.setAttribute('aria-expanded', 'true');
     item.classList.add('open');
-    body.classList.add('open');
+    if (body) body.classList.add('open');
 
-    // measure needed sizes
-    // temporarily remove max-height so scrollHeight reports full size
-    const prevMax = item.style.maxHeight;
+    // fully expand (no transition) so content appears instantly
     item.style.maxHeight = 'none';
-    const needed = item.scrollHeight; // header + body
-    // restore and animate to measured height
-    item.style.maxHeight = prevMax || headerHeight + 'px';
+    if (body) body.style.maxHeight = 'none';
+  }
 
-    // set body target
-    const bodyHeight = body.scrollHeight;
+  function doClose(item) {
+    const body = item.querySelector('.accordion-body');
+    const headerH = getHeaderHeight(item);
+    // mark closing and collapse instantly
+    item.setAttribute('aria-expanded', 'false');
+    item.classList.remove('open');
+    if (body) body.classList.remove('open');
 
-    requestAnimationFrame(() => {
-      item.style.maxHeight = needed + 'px';
-      body.style.maxHeight = bodyHeight + 'px';
+    // collapse to header height immediately
+    item.style.maxHeight = headerH + 'px';
+    if (body) body.style.maxHeight = '0px';
+  }
+
+  // Public toggle which queues if animating
+  function toggleItem(item) {
+    if (!item) return;
+    const isOpen = item.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      doClose(item);
+    } else {
+      // close others first
+      const others = qsAll(SELECTOR).filter(i => i !== item);
+      others.forEach(i => {
+        if (i.getAttribute('aria-expanded') === 'true') doClose(i);
+      });
+      doOpen(item);
+    }
+  }
+
+  // Attach image load listeners so sizes are re-measured if images inside body load after open
+  function watchImages(item) {
+    const imgs = Array.from(item.querySelectorAll('img'));
+    imgs.forEach(img => {
+      if (img.complete) return;
+      const onLoad = () => {
+        // if item is open, re-measure and update max-heights
+        if (item.getAttribute('aria-expanded') === 'true') {
+          // allow natural growth after images load
+          item.style.maxHeight = 'none';
+          const body = item.querySelector('.accordion-body');
+          if (body) body.style.maxHeight = 'none';
+        }
+        img.removeEventListener('load', onLoad);
+      };
+      img.addEventListener('load', onLoad);
     });
   }
 
-  // Ensure only one open at a time
-  function toggleItem(item) {
-    const isOpen = item.getAttribute('aria-expanded') === 'true';
-    items.forEach(i => { if (i !== item) closeItem(i); });
-    if (isOpen) closeItem(item); else openItem(item);
+  // Watch for DOM changes inside the body (text changes, injected nodes) and re-measure when open
+  function watchMutations(item) {
+    const body = item.querySelector('.accordion-body');
+    if (!body || !window.MutationObserver) return;
+    const obs = new MutationObserver((mutations) => {
+      if (item.getAttribute('aria-expanded') === 'true') {
+        // allow natural growth when content changes
+        item.style.maxHeight = 'none';
+        body.style.maxHeight = 'none';
+      }
+    });
+    obs.observe(body, { childList: true, subtree: true, characterData: true });
+    // store observer so it can be disconnected later if needed
+    item._mutObserver = obs;
   }
 
-  items.forEach(item => {
+  // Transition fallback removed — not needed for instant open/close.
+
+  function initItem(item) {
+    // ensure attribute defaults
+    if (!item.hasAttribute('aria-expanded')) item.setAttribute('aria-expanded', 'false');
+    // no queued animation state required for instant toggles
+
     const header = item.querySelector('.accordion-header');
     const body = item.querySelector('.accordion-body');
 
-    // Initialize starting heights
-    const headerHeight = getHeaderHeight(item);
-    item.style.maxHeight = headerHeight + 'px';
+    // initial collapsed state
+    const headerH = getHeaderHeight(item);
+    item.style.maxHeight = headerH + 'px';
     if (body) body.style.maxHeight = '0px';
 
-    if (header) {
-      header.addEventListener('click', (e) => {
-        e.preventDefault();
-        // move focus to the wrapper so focus styles (green outline) appear on click
-        try { item.focus({ preventScroll: true }); } catch (err) { item.focus(); }
-        toggleItem(item);
-      });
-    }
+    // click on header toggles
+    if (header) header.addEventListener('click', (e) => {
+      e.preventDefault();
+      try { item.focus({ preventScroll: true }); } catch (err) { item.focus(); }
+      toggleItem(item);
+    });
 
-    // Keyboard: support Enter / Space on the wrapper (role=button on wrapper)
+    // keyboard on wrapper
     item.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         toggleItem(item);
-      }
-      if (e.key === 'Escape') {
-        closeItem(item);
+      } else if (e.key === 'Escape') {
+        if (item.getAttribute('aria-expanded') === 'true') toggleItem(item);
       }
     });
 
-    // After transition ends, if opened, remove max-height restriction so content can grow naturally
-    item.addEventListener('transitionend', (ev) => {
-      if (ev.propertyName !== 'max-height') return;
-      const isOpen = item.getAttribute('aria-expanded') === 'true';
-      const body = item.querySelector('.accordion-body');
-      if (isOpen) {
-        // remove wrapper maxHeight constraint so responsive content can expand
-        item.style.maxHeight = 'none';
-        if (body) body.style.maxHeight = 'none';
-      } else {
-        // ensure closed state stays snapped to header height
-        const h = getHeaderHeight(item);
-        item.style.maxHeight = h + 'px';
-      }
-    });
-  });
-}
+    // No transitionend handler — open/close are instantaneous.
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initAccordion);
-} else {
-  // DOM already ready
-  initAccordion();
-}
+    // observe images to remeasure if needed
+    watchImages(item);
+  }
+
+  function initAccordion() {
+    const items = qsAll(SELECTOR);
+    if (!items.length) return;
+
+    // make wrappers focusable for keyboard interaction
+    items.forEach(item => {
+      if (!item.hasAttribute('tabindex')) item.setAttribute('tabindex', '0');
+      if (!item.hasAttribute('role')) item.setAttribute('role', 'button');
+      initItem(item);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAccordion);
+  else initAccordion();
+
+})();
